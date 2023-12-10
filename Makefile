@@ -9,6 +9,7 @@ KERNEL_SRC=$(SRC)/kernel
 
 all: bootloader kernel floppy
 .PHONY : all
+
 #
 #	Bootloader
 #
