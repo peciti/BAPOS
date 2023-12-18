@@ -1,4 +1,4 @@
-[org 0x1000]
+[org 0x7e00]
 [bits 16]
 
 main:
@@ -20,6 +20,6 @@ print:
 	ret
 
 halt:
-	jmp halt
+	hlt
 
 hello_msg: db 'Hello World!', 0
