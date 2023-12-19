@@ -1,4 +1,4 @@
-[org 0x7e00]
+[org 0x0]
 [bits 16]
 
 main:
