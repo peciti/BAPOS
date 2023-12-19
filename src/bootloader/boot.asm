@@ -43,17 +43,13 @@ main:
 	
 	call wait_input
 
-	mov al, 1
-	mov ch, 0
-	mov cl, 2
-	mov dh, 0
-	mov dl, ebr_drive_number
-	mov bx, 0x7e00
-	mov es, bx
-	
-	pusha
+	mov [ebr_drive_number], dl
 
+	mov ax, 1  			; LBA = 1 (2nd sector in disk)
+	mov cl, 1 			; Number of sectors to read
+	mov bx, 0x7e00
 	call disk_read ; load sectors into RAM
+	
 	mov si, loading_kernel_msg
 	call print
 	call wait_input
@@ -61,7 +57,9 @@ main:
 	jmp 0x7e00:0x00
 
 disk_read:
-	popa
+	push cx
+	call lba_to_chs
+	pop ax
 
 	mov ah, 0x02
 	int 0x13
@@ -69,6 +67,34 @@ disk_read:
 	jc read_error
 	
 .done:
+	ret
+
+;
+;	Converts LBA address to CHS
+;
+lba_to_chs:
+	push ax
+	push dx
+
+	xor dx, dx
+	div word [bdb_sectors_per_track]
+	inc dx
+	mov cx, dx	; sector
+
+	xor dx, dx
+	div word [bdb_sectors_per_track]
+
+	mov dh, dl	; head
+
+	; cylinder stuff
+	mov ch, al
+	shl ah, 6
+	or cl, ah
+	
+	; return values from stack
+	pop ax
+	mov dl, al
+	pop ax
 	ret
 
 read_error:
