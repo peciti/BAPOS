@@ -1,19 +1,19 @@
 %define endl 0x0d, 0x0a
 [org 0x7c00]
 [bits 16]
-
 ;
 ; FAT12 Headers
 ;
 
 jmp short main
 nop
+
 bdb_oem:					db 'MSWIN4.1'	; 8 bytes
 bdb_bytes_per_sector:		dw 512
 bdb_sectors_per_cluster:	db 1
 bdb_reserved_sectors:		dw 1
 bdb_fat_count:				db 2
-bdb_dir_entries_count:		dw 224
+bdb_dir_entries_count:		dw 0e0h
 bdb_total_sectors:			dw 2880
 bdb_media_descriptor_type:	db 0F0h
 bdb_sectors_per_fat:		dw 9 
@@ -253,7 +253,7 @@ kernel_not_found_msg: db 'Kernel not found! Press any key to reboot...', endl, 0
 kernel_cluster:	dw 0
 file_kernel_bin: db 'KERNEL  BIN'
 
-KERNEL_LOAD_SEGMENT		equ 0x2000
+KERNEL_LOAD_SEGMENT		equ 0x7e00
 KERNEL_LOAD_OFFSET			equ 0
 
 times 510-($-$$) db 0
