@@ -14,7 +14,7 @@ KERNEL_SRC=$(SRC)/kernel
 floppy: $(BUILD)/floppy.img
 $(BUILD)/floppy.img: bootloader kernel
 	dd bs=512 count=2880 if=/dev/zero of=$(BUILD)/floppy.img	
-	sudo mkfs.fat -F12 -n "BAPOS" $(BUILD)/floppy.img
+	sudo mkfs.fat -n "BAPOS" $(BUILD)/floppy.img
 	dd if=$(BUILD)/boot.bin of=$(BUILD)/floppy.img conv=notrunc
 	mcopy -i $(BUILD)/floppy.img $(BUILD)/kernel.bin "::kernel.bin"
 

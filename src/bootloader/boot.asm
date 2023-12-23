@@ -13,7 +13,7 @@ bdb_bytes_per_sector:		dw 512
 bdb_sectors_per_cluster:	db 1
 bdb_reserved_sectors:		dw 1
 bdb_fat_count:				db 2
-bdb_dir_entries_count:		dw 0e0h
+bdb_dir_entries_count:		dw 224
 bdb_total_sectors:			dw 2880
 bdb_media_descriptor_type:	db 0F0h
 bdb_sectors_per_fat:		dw 9 
@@ -38,11 +38,6 @@ stack:
 	mov sp, 0x7c00
 
 main:
-	mov si, user_input_msg
-	call print
-	
-	call wait_input
-
 	mov [ebr_drive_number], dl
 	
 	; Find FAT12 Root Directory
@@ -61,7 +56,7 @@ main:
 	test dx, dx
 	jz root_dir
 	inc ax
-
+	
 root_dir:
 	; read root dir
 	mov cl, al
@@ -171,6 +166,7 @@ disk_read:
 	pop ax
 
 	mov ah, 0x02
+	mov dl, [ebr_drive_number]
 	int 0x13
 
 	jc read_error
