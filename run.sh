@@ -1,2 +1,1 @@
-
-qemu-system-i386 build/floppy.img
+qemu-system-i386 -fda build/floppy.img

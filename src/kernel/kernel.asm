@@ -1,11 +1,10 @@
-[org 0x0]
 [bits 16]
 
 main:
 	mov si, hello_msg
 	call print
 	
-	jmp halt
+	jmp $
 	
 print:
 	lodsb
@@ -18,8 +17,5 @@ print:
 	
 .done:
 	ret
-
-halt:
-	hlt
 
 hello_msg: db 'Hello World!', 0
