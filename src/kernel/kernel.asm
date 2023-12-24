@@ -1,21 +1,23 @@
 [bits 16]
 
-main:
-	mov si, hello_msg
-	call print
-	
-	jmp $
-	
-print:
-	lodsb
-	cmp al, 0
-	je .done
-	
-	mov ah, 0x0e
-	int 0x10
-	jmp print
-	
-.done:
-	ret
+section _ENTRY CLASS=CODE
 
-hello_msg: db 'Hello World!', 0
+extern _cstart_
+
+global entry
+
+entry:
+	cli
+	mov ax, ds
+	mov ss, ax
+	mov sp, 0
+	mov bp, sp
+	sti
+
+	call _cstart_
+
+	cli
+	hlt
+	
+halt:
+	jmp halt

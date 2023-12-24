@@ -1,0 +1,89 @@
+Open Watcom Linker Version 2.0 beta Dec 24 2023 01:52:09 (32-bit)
+Copyright (c) 2002-2023 The Open Watcom Contributors. All Rights Reserved.
+Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
+Created on:       23/12/24 07:52:33
+Executable Image: build/kernel.bin
+creating a RAW Binary Image executable
+
+
+                        +------------+
+                        |   Groups   |
+                        +------------+
+
+Group                           Address              Size
+=====                           =======              ====
+
+DGROUP                          00000050             0000000e
+
+
+
+                        +--------------+
+                        |   Segments   |
+                        +--------------+
+
+Segment                Class          Group          Address         Size
+=======                =====          =====          =======         ====
+
+_ENTRY                 CODE           AUTO           00000000        00000012
+_TEXT                  CODE           AUTO           00000012        0000003d
+CONST                  DATA           DGROUP         00000050        0000000d
+CONST2                 DATA           DGROUP         0000005e        00000000
+_DATA                  DATA           DGROUP         0000005e        00000000
+
+
+                        +----------------+
+                        |   Memory Map   |
+                        +----------------+
+
+* = unreferenced symbol
++ = symbol only referenced locally
+
+Address        Symbol
+=======        ======
+
+Module: build/kernel/asm/kernel.obj(src/kernel/kernel.asm)
+00000000       entry
+Module: build/kernel/asm/print.obj(src/kernel/print.asm)
+00000012       _x86_Write_Character
+Module: build/kernel/c/kernel.obj(/home/nofullname/BAPOS/src/kernel/kernel.c)
+00000025       _cstart_
+Module: build/kernel/c/stdio.obj(/home/nofullname/BAPOS/src/kernel/stdio.c)
+0000002b+      putc_
+0000003e       puts_
+
+
+                        +---------------------+
+                        |   Module Segments   |
+                        +---------------------+
+
+! = 32-bit segment
+c = initialized communal data
+
+Module          Segment               Class           Address         Size
+======          =======               =====           =======         ====
+
+src/kernel/kernel.asm
+                _ENTRY                CODE           00000000         00000012
+src/kernel/print.asm
+                _TEXT                 CODE           00000012         00000013
+/home/nofullname/BAPOS/src/kernel/kernel.c
+                _TEXT                 CODE           00000025         00000006
+                CONST                 DATA           00000050         0000000d
+                CONST2                DATA           0000005e         00000000
+                _DATA                 DATA           0000005e         00000000
+/home/nofullname/BAPOS/src/kernel/stdio.c
+                _TEXT                 CODE           0000002b         00000024
+                CONST                 DATA           0000005e         00000000
+                CONST2                DATA           0000005e         00000000
+                _DATA                 DATA           0000005e         00000000
+Warning! W1014: stack segment not found
+
+
+                        +-----------------------+
+                        |   Linker Statistics   |
+                        +-----------------------+
+
+Stack size:  0200 (512.)
+Memory size:  005e (94.)
+Entry point address: 00000000
+Link time: 00:00.00

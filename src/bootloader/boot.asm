@@ -163,7 +163,7 @@ root_dir:
 disk_read:
 	push cx
 	call lba_to_chs
-	pop ax
+	pop ax	; pop value pushed by lba_to_chs
 
 	mov ah, 0x02
 	mov dl, [ebr_drive_number]
@@ -249,7 +249,7 @@ kernel_not_found_msg: db 'Kernel not found! Press any key to reboot...', endl, 0
 kernel_cluster:	dw 0
 file_kernel_bin: db 'KERNEL  BIN'
 
-KERNEL_LOAD_SEGMENT		equ 0x7e00
+KERNEL_LOAD_SEGMENT		equ 0x2000
 KERNEL_LOAD_OFFSET			equ 0
 
 times 510-($-$$) db 0
