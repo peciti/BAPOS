@@ -37,9 +37,9 @@ bootloader:
 
 kernel:
 	$(ASM) $(ASM_FLAGS) -o $(BUILD)/kernel/asm/kernel.obj $(KERNEL_SRC)/kernel.asm
-	$(ASM)  $(ASM_FLAGS) -o $(BUILD)/kernel/asm/print.obj $(KERNEL_SRC)/print.asm
+	$(ASM)  $(ASM_FLAGS) -o $(BUILD)/kernel/asm/print.obj $(KERNEL_SRC)/library/print.asm
 	$(CC16) $(CFLAGS16) -fo=$(BUILD)/kernel/c/kernel.obj $(KERNEL_SRC)/kernel.c
-	$(CC16) $(CFLAGS16) -fo=$(BUILD)/kernel/c/stdio.obj $(KERNEL_SRC)/stdio.c
+	$(CC16) $(CFLAGS16) -fo=$(BUILD)/kernel/c/stdio.obj $(KERNEL_SRC)/library/stdio.c
 	$(LD16) NAME $(BUILD)/kernel.bin FILE \{$(BUILD)/kernel/asm/kernel.obj $(BUILD)/kernel/asm/print.obj $(BUILD)/kernel/c/kernel.obj $(BUILD)/kernel/c/stdio.obj \} OPTION MAP=$(BUILD)/kernel.map @$(KERNEL_SRC)/linker.lnk
 
 always:
