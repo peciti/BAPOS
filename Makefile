@@ -37,10 +37,11 @@ bootloader:
 
 kernel:
 	$(ASM) $(ASM_FLAGS) -o $(BUILD)/kernel/asm/kernel.obj $(KERNEL_SRC)/kernel.asm
-	$(ASM)  $(ASM_FLAGS) -o $(BUILD)/kernel/asm/print.obj $(KERNEL_SRC)/library/print.asm
+	$(ASM)  $(ASM_FLAGS) -o $(BUILD)/kernel/asm/print.obj $(KERNEL_SRC)/library/stdio/print.asm
+	$(ASM) $(ASM_FLAGS) -o $(BUILD)/kernel/asm/disk.obj $(KERNEL_SRC)/disk/asmDisk.asm
 	$(CC16) $(CFLAGS16) -fo=$(BUILD)/kernel/c/kernel.obj $(KERNEL_SRC)/kernel.c
-	$(CC16) $(CFLAGS16) -fo=$(BUILD)/kernel/c/stdio.obj $(KERNEL_SRC)/library/stdio.c
-	$(LD16) NAME $(BUILD)/kernel.bin FILE \{$(BUILD)/kernel/asm/kernel.obj $(BUILD)/kernel/asm/print.obj $(BUILD)/kernel/c/kernel.obj $(BUILD)/kernel/c/stdio.obj \} OPTION MAP=$(BUILD)/kernel.map @$(KERNEL_SRC)/linker.lnk
+	$(CC16) $(CFLAGS16) -fo=$(BUILD)/kernel/c/stdio.obj $(KERNEL_SRC)/library/stdio/stdio.c
+	$(LD16) NAME $(BUILD)/kernel.bin FILE \{$(BUILD)/kernel/asm/kernel.obj $(BUILD)/kernel/asm/print.obj $(BUILD)/kernel/asm/disk.obj $(BUILD)/kernel/c/kernel.obj $(BUILD)/kernel/c/stdio.obj \} OPTION MAP=$(BUILD)/kernel.map @$(KERNEL_SRC)/linker.lnk
 
 always:
 	mkdir -p $(BUILD)
