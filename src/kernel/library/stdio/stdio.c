@@ -1,6 +1,10 @@
 #include "stdio.h"
 #include "print.h"
 
+void clear_screen(){
+	x86_clear_screen();
+}
+
 void putc(char c){
 	x86_Write_Character(c,0);
 }
@@ -108,6 +112,10 @@ void _cdecl printf(const char* fmt, ...){
 					radix = 8;
 					sign = false;
 					argp = printf_number(argp, length, sign, radix);
+					break;
+				case 'n':
+					putc(0x0d);
+					putc(0x0a);
 					break;
 				default:
 					break;

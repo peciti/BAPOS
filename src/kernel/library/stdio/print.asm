@@ -2,6 +2,15 @@ bits 16
 
 section _TEXT class=CODE
 
+global _x86_clear_screen
+_x86_clear_screen:
+	pusha
+	mov ah, 0x0
+	mov al, 0x03
+	int 0x10
+	popa
+	ret
+
 global _x86_div64_32
 _x86_div64_32:
 	push bp
