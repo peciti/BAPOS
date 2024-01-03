@@ -32,10 +32,19 @@ ebr_volume_label:			db 'BAPOS      ' ; 11 bytes
 ebr_system_id:				db 'FAT12   '	; 8 bytes
 
 ; stack setup
+start:
+	cli
+	xor ax, ax
+	mov es, ax
+	mov ds, ax
+
+	jmp 0x00:stack
+	
 stack:
-	mov ax, 0
+	sti
+	mov bp, 0x8000
 	mov ss, ax
-	mov sp, 0x7c00
+	mov sp, bp
 
 main:
 	mov [ebr_drive_number], dl
