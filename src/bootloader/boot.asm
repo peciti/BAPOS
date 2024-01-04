@@ -5,7 +5,7 @@
 ; FAT12 Headers
 ;
 
-jmp short main
+jmp short start
 nop
 
 bdb_oem:					db 'MSWIN4.1'	; 8 bytes
@@ -42,7 +42,7 @@ start:
 	
 stack:
 	sti
-	mov bp, 0x8000
+	mov bp, 0x7c00
 	mov ss, ax
 	mov sp, bp
 
