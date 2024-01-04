@@ -1,6 +1,7 @@
 #include "library/stdint.h"
 #include "library/stdio/stdio.h"
 #include "disk/asmDisk.h"
+#include "power/power_options.h"
 
 void _cdecl cstart_(){
 	uint8_t error;
@@ -15,10 +16,21 @@ void _cdecl cstart_(){
 	if (error == 0)
 	{
 		printf("%nPress any key to continue...");
-		printf("%c", read_key());
+		c = read_key();
+		while(1){
+			printf("%nYou Pressed the key '%c'", c);
+			c = read_key();
+			clear_screen();
+			
+			if(c == 'Q'){
+				x86_Shutdown();
+			}
+		}
 	}
 	else
 	{
 		printf("%nPress any key to reboot...");
 	}
+
+	
 }
