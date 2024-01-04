@@ -1,7 +1,7 @@
 Open Watcom Linker Version 2.0 beta Dec 24 2023 01:52:09 (32-bit)
 Copyright (c) 2002-2023 The Open Watcom Contributors. All Rights Reserved.
 Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
-Created on:       24/01/04 11:52:00
+Created on:       24/01/04 14:03:37
 Executable Image: build/kernel.bin
 creating a RAW Binary Image executable
 
@@ -13,7 +13,7 @@ creating a RAW Binary Image executable
 Group                           Address              Size
 =====                           =======              ====
 
-DGROUP                          000003e8             00000080
+DGROUP                          0000042c             00000082
 
 
 
@@ -25,10 +25,10 @@ Segment                Class          Group          Address         Size
 =======                =====          =====          =======         ====
 
 _ENTRY                 CODE           AUTO           00000000        00000012
-_TEXT                  CODE           AUTO           00000012        000003d5
-CONST                  DATA           DGROUP         000003e8        0000006d
-CONST2                 DATA           DGROUP         00000456        00000011
-_DATA                  DATA           DGROUP         00000468        00000000
+_TEXT                  CODE           AUTO           00000012        0000041a
+CONST                  DATA           DGROUP         0000042c        00000070
+CONST2                 DATA           DGROUP         0000049c        00000011
+_DATA                  DATA           DGROUP         000004ae        00000000
 
 
                         +----------------+
@@ -50,16 +50,19 @@ Module: build/kernel/asm/print.obj(src/kernel/library/stdio/print.asm)
 Module: build/kernel/asm/disk.obj(src/kernel/disk/asmDisk.asm)
 0000005c*      _x86_Disk_Read
 0000005f       _x86_Disk_Reset
+Module: build/kernel/asm/input.obj(src/kernel/library/stdio/input.asm)
+0000008b       _x86_Read_Keypress
 Module: build/kernel/c/kernel.obj(/home/nofullname/BAPOS/src/kernel/kernel.c)
-0000008b       _cstart_
+0000009b       _cstart_
 Module: build/kernel/c/stdio.obj(/home/nofullname/BAPOS/src/kernel/library/stdio/stdio.c)
-000000d6       clear_screen_
-000000e0+      putc_
-000000f1+      puts_
-00000102+      puts_f_
-00000120       _printf
-00000252+      printf_number_
-00000456+      _possibleChars
+000000fd       read_key_
+0000011c       clear_screen_
+00000124+      putc_
+00000135+      puts_
+00000146+      puts_f_
+00000165       _printf
+00000297+      printf_number_
+0000049c+      _possibleChars
 
 
                         +---------------------+
@@ -78,16 +81,18 @@ src/kernel/library/stdio/print.asm
                 _TEXT                 CODE           00000012         0000004a
 src/kernel/disk/asmDisk.asm
                 _TEXT                 CODE           0000005c         0000002f
+src/kernel/library/stdio/input.asm
+                _TEXT                 CODE           0000008b         00000010
 /home/nofullname/BAPOS/src/kernel/kernel.c
-                _TEXT                 CODE           0000008b         0000004b
-                CONST                 DATA           000003e8         0000006d
-                CONST2                DATA           00000456         00000000
-                _DATA                 DATA           00000468         00000000
+                _TEXT                 CODE           0000009b         00000062
+                CONST                 DATA           0000042c         00000070
+                CONST2                DATA           0000049c         00000000
+                _DATA                 DATA           000004ae         00000000
 /home/nofullname/BAPOS/src/kernel/library/stdio/stdio.c
-                _TEXT                 CODE           000000d6         00000311
-                CONST                 DATA           00000456         00000000
-                CONST2                DATA           00000456         00000011
-                _DATA                 DATA           00000468         00000000
+                _TEXT                 CODE           000000fd         0000032f
+                CONST                 DATA           0000049c         00000000
+                CONST2                DATA           0000049c         00000011
+                _DATA                 DATA           000004ae         00000000
 Warning! W1014: stack segment not found
 
 
@@ -96,6 +101,6 @@ Warning! W1014: stack segment not found
                         +-----------------------+
 
 Stack size:  0200 (512.)
-Memory size:  0468 (1128.)
+Memory size:  04ae (1198.)
 Entry point address: 00000000
 Link time: 00:00.00

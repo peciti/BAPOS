@@ -4,6 +4,7 @@
 
 void _cdecl cstart_(){
 	uint8_t error;
+	char c;
 	
 	clear_screen();
 
@@ -14,6 +15,7 @@ void _cdecl cstart_(){
 	if (error == 0)
 	{
 		printf("%nPress any key to continue...");
+		printf("%c", read_key());
 	}
 	else
 	{

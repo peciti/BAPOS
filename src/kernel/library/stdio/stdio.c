@@ -1,5 +1,12 @@
 #include "stdio.h"
 #include "print.h"
+#include "input.h"
+
+char read_key(){
+	char c;
+	x86_Read_Keypress(c);
+	return c;
+}
 
 void clear_screen(){
 	x86_clear_screen();

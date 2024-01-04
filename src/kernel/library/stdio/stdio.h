@@ -7,6 +7,7 @@ void _cdecl printf(const char* fmt, ...);
 void puts_f(const char far* s);
 int * printf_number(int*, int, bool, int);
 void clear_screen();
+char read_key();
 
 #define PRINTF_STATE_START 0
 #define PRINTF_STATE_LENGTH 1
