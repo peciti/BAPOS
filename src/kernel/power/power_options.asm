@@ -19,6 +19,20 @@ xor bx, bx
 int 0x15
 jc APM_error
 
+; set APM version
+mov ah, 0x53
+mov al, 0x0e
+mov bx, 0x0000
+mov ch, 0x01
+mov cl, 0x01
+int 0x15
+jc version_error
+
+cmp al, 0
+jc continue
+jmp version_error
+
+continue:
 ; Enable power management for all devices
 mov ah, 0x53
 mov al, 0x08
@@ -44,6 +58,12 @@ APM_error:
 	
 	ret
 
+version_error:
+	mov si, apm_version_error
+	call print
+
+	ret
+
 print:
 	lodsb
 	cmp al, 0
@@ -56,4 +76,4 @@ print:
 	ret
 	
 apm_error_message: db 'There was an error while shutting down...'
-
+apm_version_error: db 'There was an error settings APM version...'
