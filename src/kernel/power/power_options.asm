@@ -28,10 +28,6 @@ mov cl, 0x01
 int 0x15
 jc version_error
 
-cmp al, 0
-jc continue
-jmp version_error
-
 continue:
 ; Enable power management for all devices
 mov ah, 0x53

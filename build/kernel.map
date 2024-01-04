@@ -1,7 +1,7 @@
 Open Watcom Linker Version 2.0 beta Dec 24 2023 01:52:09 (32-bit)
 Copyright (c) 2002-2023 The Open Watcom Contributors. All Rights Reserved.
 Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
-Created on:       24/01/04 15:33:05
+Created on:       24/01/04 15:35:42
 Executable Image: build/kernel.bin
 creating a RAW Binary Image executable
 
@@ -13,7 +13,7 @@ creating a RAW Binary Image executable
 Group                           Address              Size
 =====                           =======              ====
 
-DGROUP                          000004fa             0000009a
+DGROUP                          000004f4             0000009a
 
 
 
@@ -25,10 +25,10 @@ Segment                Class          Group          Address         Size
 =======                =====          =====          =======         ====
 
 _ENTRY                 CODE           AUTO           00000000        00000012
-_TEXT                  CODE           AUTO           00000012        000004e7
-CONST                  DATA           DGROUP         000004fa        00000088
-CONST2                 DATA           DGROUP         00000582        00000011
-_DATA                  DATA           DGROUP         00000594        00000000
+_TEXT                  CODE           AUTO           00000012        000004e1
+CONST                  DATA           DGROUP         000004f4        00000088
+CONST2                 DATA           DGROUP         0000057c        00000011
+_DATA                  DATA           DGROUP         0000058e        00000000
 
 
                         +----------------+
@@ -46,25 +46,25 @@ Module: build/kernel/asm/kernel.obj(src/kernel/kernel.asm)
 Module: build/kernel/asm/power.obj(src/kernel/power/power_options.asm)
 00000012       _x86_Shutdown
 Module: build/kernel/asm/print.obj(src/kernel/library/stdio/print.asm)
-000000c6       _x86_clear_screen
-000000cf       _x86_div64_32
-000000fd       _x86_Write_Character
+000000c0       _x86_clear_screen
+000000c9       _x86_div64_32
+000000f7       _x86_Write_Character
 Module: build/kernel/asm/disk.obj(src/kernel/disk/asmDisk.asm)
-00000110*      _x86_Disk_Read
-00000113       _x86_Disk_Reset
+0000010a*      _x86_Disk_Read
+0000010d       _x86_Disk_Reset
 Module: build/kernel/asm/input.obj(src/kernel/library/stdio/input.asm)
-0000013f       _x86_Read_Keypress
+00000139       _x86_Read_Keypress
 Module: build/kernel/c/kernel.obj(/home/nofullname/BAPOS/src/kernel/kernel.c)
-0000014f       _cstart_
+00000149       _cstart_
 Module: build/kernel/c/stdio.obj(/home/nofullname/BAPOS/src/kernel/library/stdio/stdio.c)
-000001ca       read_key_
-000001e9       clear_screen_
-000001f1+      putc_
-00000202+      puts_
-00000213+      puts_f_
-00000232       _printf
-00000364+      printf_number_
-00000582+      _possibleChars
+000001c4       read_key_
+000001e3       clear_screen_
+000001eb+      putc_
+000001fc+      puts_
+0000020d+      puts_f_
+0000022c       _printf
+0000035e+      printf_number_
+0000057c+      _possibleChars
 
 
                         +---------------------+
@@ -80,23 +80,23 @@ Module          Segment               Class           Address         Size
 src/kernel/kernel.asm
                 _ENTRY                CODE           00000000         00000012
 src/kernel/power/power_options.asm
-                _TEXT                 CODE           00000012         000000b4
+                _TEXT                 CODE           00000012         000000ae
 src/kernel/library/stdio/print.asm
-                _TEXT                 CODE           000000c6         0000004a
+                _TEXT                 CODE           000000c0         0000004a
 src/kernel/disk/asmDisk.asm
-                _TEXT                 CODE           00000110         0000002f
+                _TEXT                 CODE           0000010a         0000002f
 src/kernel/library/stdio/input.asm
-                _TEXT                 CODE           0000013f         00000010
+                _TEXT                 CODE           00000139         00000010
 /home/nofullname/BAPOS/src/kernel/kernel.c
-                _TEXT                 CODE           0000014f         0000007b
-                CONST                 DATA           000004fa         00000088
-                CONST2                DATA           00000582         00000000
-                _DATA                 DATA           00000594         00000000
+                _TEXT                 CODE           00000149         0000007b
+                CONST                 DATA           000004f4         00000088
+                CONST2                DATA           0000057c         00000000
+                _DATA                 DATA           0000058e         00000000
 /home/nofullname/BAPOS/src/kernel/library/stdio/stdio.c
-                _TEXT                 CODE           000001ca         0000032f
-                CONST                 DATA           00000582         00000000
-                CONST2                DATA           00000582         00000011
-                _DATA                 DATA           00000594         00000000
+                _TEXT                 CODE           000001c4         0000032f
+                CONST                 DATA           0000057c         00000000
+                CONST2                DATA           0000057c         00000011
+                _DATA                 DATA           0000058e         00000000
 Warning! W1014: stack segment not found
 
 
@@ -105,6 +105,6 @@ Warning! W1014: stack segment not found
                         +-----------------------+
 
 Stack size:  0200 (512.)
-Memory size:  0594 (1428.)
+Memory size:  058e (1422.)
 Entry point address: 00000000
 Link time: 00:00.00
