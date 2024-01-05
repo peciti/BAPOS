@@ -41,7 +41,7 @@ jc power_mode_error
 mov ah, 0x53
 mov al, 0x07
 mov bx, 0x0001
-mov cx, 0x0003
+mov cx, 0x03
 int 0x15
 jc APM_error
 
