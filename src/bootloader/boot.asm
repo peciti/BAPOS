@@ -189,27 +189,26 @@ disk_read:
 lba_to_chs:
 	push ax
 	push dx
-
-	xor dx, dx
-	div word [bdb_sectors_per_track]
-	inc dx
-	mov cx, dx	; sector
-
-	xor dx, dx
-	div word [bdb_sectors_per_track]
-
-	mov dh, dl	; head
-
-	; cylinder stuff
-	mov ch, al
-	shl ah, 6
-	or cl, ah
 	
-	; return values from stack
-	pop ax
-	mov dl, al
-	pop ax
-	ret
+	 xor dx, dx                          ; dx = 0
+	 div word [bdb_sectors_per_track]    ; ax = LBA / SectorsPerTrack
+	                                            ; dx = LBA % SectorsPerTrack
+	
+	 inc dx                              ; dx = (LBA % SectorsPerTrack + 1) = sector
+	 mov cx, dx                          ; cx = sector
+	
+	 xor dx, dx                          ; dx = 0
+	 div word [bdb_heads]                ; ax = (LBA / SectorsPerTrack) / Heads = cylinder
+	                                            ; dx = (LBA / SectorsPerTrack) % Heads = head
+	 mov dh, dl                          ; dh = head
+	 mov ch, al                          ; ch = cylinder (lower 8 bits)
+	 shl ah, 6
+	 or cl, ah                           ; put upper 2 bits of cylinder in CL
+	
+	 pop ax
+	 mov dl, al                          ; restore DL
+	 pop ax
+	 ret
 
 read_error:
 	mov si, error_msg
