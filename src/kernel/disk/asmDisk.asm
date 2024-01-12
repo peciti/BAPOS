@@ -6,16 +6,19 @@ section _TEXT class=CODE
 
 global _x86_Disk_Read
 _x86_Disk_Read:
+	sti
 	push bp
 	mov bp, sp
 
-	mov dx, [bp + 6]
-	mov ax, [bp + 8]
-	mov cx, [bp + 10]
-	mov bx, [bp + 12]
+	mov dx, 0
+	mov ax, 37
+	mov cx, 1
+	mov bx, 0x8000
 	call disk_read
 	
-	jmp end_reset
+	mov sp, bp
+	pop bp
+	ret
 
 global _x86_Disk_Reset
 _x86_Disk_Reset:

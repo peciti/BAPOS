@@ -20,6 +20,18 @@ _x86_Read_Keypress:
 
 global _x86_Jump
 _x86_Jump:
+	push bp
+	mov bp, sp
 
-	jmp [bp]
+	cli
+		mov ax, ds
+		mov ss, ax
+		mov sp, 0
+		mov bp, sp
+	sti
+	
+	jmp [bp + 6]
+
+	mov sp, bp
+	pop bp
 	ret
