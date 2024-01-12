@@ -10,11 +10,15 @@ _x86_Disk_Read:
 	push bp
 	mov bp, sp
 
+	push bx
+
 	mov dx, 0
 	mov ax, 37
 	mov cx, 1
 	mov bx, 0x8000
 	call disk_read
+
+	pop bx
 	
 	mov sp, bp
 	pop bp
