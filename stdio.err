@@ -1,5 +1,5 @@
-src/kernel/library/stdio/stdio.c(7): Warning! W200: 'c' has been referenced but never assigned a value
-src/kernel/library/stdio/stdio.c(7): Note! I2002: 'x86_Read_Keypress' defined in: src/kernel/library/stdio/input.h(3)
-src/kernel/library/stdio/stdio.c(7): Warning! W102: Parameter 1: Type mismatch (warning)
-src/kernel/library/stdio/stdio.c(7): Note! I2003: source conversion type is 'char'
-src/kernel/library/stdio/stdio.c(7): Note! I2004: target conversion type is 'char *'
+src/kernel/library/stdio/stdio.c(11): Warning! W200: 'c' has been referenced but never assigned a value
+src/kernel/library/stdio/stdio.c(11): Note! I2002: 'x86_Read_Keypress' defined in: src/kernel/library/stdio/input.h(3)
+src/kernel/library/stdio/stdio.c(11): Warning! W102: Parameter 1: Type mismatch (warning)
+src/kernel/library/stdio/stdio.c(11): Note! I2003: source conversion type is 'char'
+src/kernel/library/stdio/stdio.c(11): Note! I2004: target conversion type is 'char *'

@@ -1,4 +1,6 @@
-bits 16
+bdb_sectors_per_track: dw 18
+bdb_heads: db 2
+[bits 16]
 
 section _TEXT class=CODE
 
@@ -6,7 +8,12 @@ global _x86_Disk_Read
 _x86_Disk_Read:
 	push bp
 	mov bp, sp
-	
+
+	mov dx, [bp + 6]
+	mov ax, [bp + 8]
+	mov cx, [bp + 10]
+	mov bx, [bp + 12]
+	call disk_read
 	
 	jmp end_reset
 
@@ -50,7 +57,7 @@ lba_to_chs:
 	push dx
 	
 	 xor dx, dx                          ; dx = 0
-	 div word [bdb_sectors_per_track]    ; ax = LBA / SectorsPerTrack
+	 div word [bdb_sectors_per_track]     ; ax = LBA / SectorsPerTrack
 	                                            ; dx = LBA % SectorsPerTrack
 	
 	 inc dx                              ; dx = (LBA % SectorsPerTrack + 1) = sector
@@ -68,6 +75,3 @@ lba_to_chs:
 	 mov dl, al                          ; restore DL
 	 pop ax
 	 ret
-
-bdb_sectors_per_track:		dw 18
-bdb_heads:					dw 2
