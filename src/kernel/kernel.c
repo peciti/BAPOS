@@ -27,8 +27,8 @@ void _cdecl cstart_(){
 			}
 			if(c == 's' || c == 'S'){
 				printf("%nLoading program!");
-				x86_Disk_Read(0, 37, 1, 0x8000);
-				jump(0x8000);
+				x86_Disk_Read();
+				x86_Jump(0x8000);
 			}
 		}
 	}

@@ -3,6 +3,12 @@ bdb_heads: db 2
 [bits 16]
 
 section _TEXT class=CODE
+global _x86_Jump
+_x86_Jump:
+		
+	jmp [bp + 2]
+	
+	ret
 
 global _x86_Disk_Read
 _x86_Disk_Read:

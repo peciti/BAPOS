@@ -2,10 +2,6 @@
 #include "print.h"
 #include "input.h"
 
-void jump(uint16_t destination){
-	x86_Jump(destination);
-}
-
 char read_key(){
 	char c;
 	x86_Read_Keypress(c);

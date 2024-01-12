@@ -18,9 +18,3 @@ _x86_Read_Keypress:
 	pop bp
 	ret
 
-global _x86_Jump
-_x86_Jump:
-		
-	jmp [bp + 2]
-	
-	ret
