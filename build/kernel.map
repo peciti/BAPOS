@@ -1,7 +1,7 @@
-Open Watcom Linker Version 2.0 beta Dec 24 2023 01:52:09 (32-bit)
-Copyright (c) 2002-2023 The Open Watcom Contributors. All Rights Reserved.
+Open Watcom Linker Version 2.0 beta Jan 12 2024 01:50:46 (32-bit)
+Copyright (c) 2002-2024 The Open Watcom Contributors. All Rights Reserved.
 Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
-Created on:       24/01/19 00:37:15
+Created on:       24/01/19 05:40:21
 Executable Image: build/kernel.bin
 creating a RAW Binary Image executable
 
@@ -55,9 +55,9 @@ Module: build/kernel/asm/disk.obj(src/kernel/disk/asmDisk.asm)
 0000019d       _x86_Disk_Reset
 Module: build/kernel/asm/input.obj(src/kernel/library/stdio/input.asm)
 000001e8       _x86_Read_Keypress
-Module: build/kernel/c/kernel.obj(/home/nofullname/BAPOS/src/kernel/kernel.c)
+Module: build/kernel/c/kernel.obj(/home/debian/BAPOS/src/kernel/kernel.c)
 000001f6       _cstart_
-Module: build/kernel/c/stdio.obj(/home/nofullname/BAPOS/src/kernel/library/stdio/stdio.c)
+Module: build/kernel/c/stdio.obj(/home/debian/BAPOS/src/kernel/library/stdio/stdio.c)
 00000289       read_key_
 000002a8       clear_screen_
 000002b0+      putc_
@@ -88,12 +88,12 @@ src/kernel/disk/asmDisk.asm
                 _TEXT                 CODE           00000191         00000057
 src/kernel/library/stdio/input.asm
                 _TEXT                 CODE           000001e8         0000000e
-/home/nofullname/BAPOS/src/kernel/kernel.c
+/home/debian/BAPOS/src/kernel/kernel.c
                 _TEXT                 CODE           000001f6         00000093
                 CONST                 DATA           000005b8         0000009b
                 CONST2                DATA           00000654         00000000
                 _DATA                 DATA           00000666         00000000
-/home/nofullname/BAPOS/src/kernel/library/stdio/stdio.c
+/home/debian/BAPOS/src/kernel/library/stdio/stdio.c
                 _TEXT                 CODE           00000289         0000032f
                 CONST                 DATA           00000654         00000000
                 CONST2                DATA           00000654         00000011
