@@ -3,6 +3,10 @@ bdb_heads: db 2
 [bits 16]
 
 section _TEXT class=CODE
+global _x86_Run_Program
+_86_Run_Program:
+	ret
+
 global _x86_Jump
 _x86_Jump:
 	ret

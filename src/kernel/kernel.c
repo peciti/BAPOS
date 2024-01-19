@@ -18,9 +18,8 @@ void _cdecl cstart_(){
 		printf("%nPress any key to continue...");
 		c = read_key();
 		while(1){
-			printf("%nYou Pressed the key '%c'", c);
 			c = read_key();
-			clear_screen();
+			putc(c);
 			
 			if(c == 'Q'){
 				x86_Shutdown();
