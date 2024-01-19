@@ -4,7 +4,7 @@
 #include "power/power_options.h"
 
 void _cdecl cstart_(){
-	uint8_t* error;
+	uint8_t error;
 	char c;
 	
 	clear_screen();
