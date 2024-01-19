@@ -11,7 +11,7 @@ BUILD=build
 BOOTLOADER_SRC=$(SRC)/bootloader
 KERNEL_SRC=$(SRC)/kernel
 
-all: clean always floppy bootloader kernel
+all: clean always floppy snake_floppy bootloader kernel
 #
 #	Floppy Image
 #
@@ -24,6 +24,11 @@ $(BUILD)/floppy.img: bootloader kernel
 	mcopy -i $(BUILD)/floppy.img $(BUILD)/kernel.bin "::kernel.bin"
 	mcopy -i $(BUILD)/floppy.img apps/snake.bin "::snake.bin"
 
+snake_floppy: $(BUILD)/snake_floppy.img
+$(BUILD)/snake_floppy.img:
+	dd bs=512 count=2880 if=/dev/zero of=$(BUILD)/snake_floppy.img	
+		sudo mkfs.fat -F 12 -n "SNAKE" $(BUILD)/snake_floppy.img
+		dd if=apps/snake.bin of=$(BUILD)/snake_floppy.img conv=notrunc
 
 #
 #	Bootloader
