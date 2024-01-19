@@ -4,7 +4,7 @@
 #include "power/power_options.h"
 
 void _cdecl cstart_(){
-	uint8_t error;
+	uint8_t* error;
 	char c;
 	
 	clear_screen();
@@ -29,13 +29,10 @@ void _cdecl cstart_(){
 				printf("%nLoading program!");
 				x86_Disk_Read();
 				}
-			}
 		}
 	}
 	else
 	{
 		printf("%nPress any key to reboot...");
 	}
-
-	
 }
