@@ -4,11 +4,11 @@ section _TEXT class=CODE
 
 global _x86_clear_screen
 _x86_clear_screen:
-	pusha
+	push ax
 	mov ah, 0x0
 	mov al, 0x03
 	int 0x10
-	popa
+	pop ax
 	ret
 
 global _x86_div64_32
