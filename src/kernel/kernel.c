@@ -6,8 +6,6 @@
 void _cdecl cstart_(){
 	uint8_t error;
 	char c;
-	
-	clear_screen();
 
 	x86_Disk_Reset(0, error);
 	
@@ -34,4 +32,12 @@ void _cdecl cstart_(){
 	{
 		printf("%nPress any key to reboot...");
 	}
+}
+
+void _cdecl clear_screen_(){
+	clear_screen();
+}
+
+void _cdecl putc_(char c){
+	putc(c);
 }

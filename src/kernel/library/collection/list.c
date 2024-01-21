@@ -7,5 +7,8 @@ struct node{
 }
 
 struct List{
-	struct node item;
+	struct node* firstitem;
+	struct node* lastitem;
 }
+
+
