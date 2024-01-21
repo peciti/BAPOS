@@ -19,12 +19,11 @@ void _cdecl cstart_(){
 			c = read_key();
 			putc(c);
 			
-			if(c == 'Q'){
+			if(c == 17){
 				x86_Shutdown();
 			}
-			if(c == 's' || c == 'S'){
-				printf("%nLoading program!");
-				x86_Disk_Read();
+			if(c == 13){
+				clear_screen();
 			}
 		}
 	}
