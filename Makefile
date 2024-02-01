@@ -56,6 +56,6 @@ always:
 	mkdir -p $(BUILD)/kernel
 	mkdir -p $(BUILD)/kernel/asm
 	mkdir -p $(BUILD)/kernel/c
-	
+
 clean:
 	rm -rf $(BUILD)/*

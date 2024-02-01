@@ -25,13 +25,6 @@ void _cdecl cstart_(){
 			if(c == 13){
 				clear_screen();
 			}
-			if(c == 'A'){
-				_asm{
-						xor ax, ax
-						mov es, ax
-						jmp 0x7c00
-					}
-			}
 		}
 	}
 	else
