@@ -16,6 +16,12 @@ _x86_Disk_Read:
 	sti
 	push bp
 	mov bp, sp
+
+	mov dl, 0 ; floppy disk
+	mov ax, [bp+4] ; sector
+	mov cx, [bp+6] ; how many sectors to read
+	mov bx, [bp+8] ; load offset
+	call disk_read
 	
 	mov sp, bp
 	pop bp
