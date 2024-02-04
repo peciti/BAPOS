@@ -1,7 +1,7 @@
 Open Watcom Linker Version 2.0 beta Jan  1 2024 01:56:31 (32-bit)
 Copyright (c) 2002-2024 The Open Watcom Contributors. All Rights Reserved.
 Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
-Created on:       24/02/01 09:12:39
+Created on:       24/02/04 14:46:03
 Executable Image: build/kernel.bin
 creating a RAW Binary Image executable
 
@@ -13,7 +13,7 @@ creating a RAW Binary Image executable
 Group                           Address              Size
 =====                           =======              ====
 
-DGROUP                          000005b2             00000080
+DGROUP                          000005be             00000080
 
 
 
@@ -25,10 +25,10 @@ Segment                Class          Group          Address         Size
 =======                =====          =====          =======         ====
 
 _ENTRY                 CODE           AUTO           00000000        0000001d
-_TEXT                  CODE           AUTO           0000001d        00000594
-CONST                  DATA           DGROUP         000005b2        0000006d
-CONST2                 DATA           DGROUP         00000620        00000011
-_DATA                  DATA           DGROUP         00000632        00000000
+_TEXT                  CODE           AUTO           0000001d        000005a0
+CONST                  DATA           DGROUP         000005be        0000006d
+CONST2                 DATA           DGROUP         0000062c        00000011
+_DATA                  DATA           DGROUP         0000063e        00000000
 
 
                         +----------------+
@@ -43,31 +43,31 @@ Address        Symbol
 
 Module: build/kernel/asm/kernel.obj(src/kernel/kernel.asm)
 00000008       entry
-Module: build/kernel/asm/power.obj(src/kernel/power/power_options.asm)
+Module: build/kernel/asm/power.obj(src/libraries/power/power_options.asm)
 0000001d       _x86_Shutdown
-Module: build/kernel/asm/print.obj(src/kernel/library/stdio/print.asm)
+Module: build/kernel/asm/print.obj(src/libraries/stdio/print.asm)
 00000152       _x86_clear_screen
 0000015b       _x86_div64_32
 00000189       _x86_Write_Character
-Module: build/kernel/asm/disk.obj(src/kernel/disk/asmDisk.asm)
+Module: build/kernel/asm/disk.obj(src/libraries/disk/asmDisk.asm)
 000001a0*      _x86_Jump
 000001a1*      _x86_Disk_Read
-000001a9       _x86_Disk_Reset
-Module: build/kernel/asm/input.obj(src/kernel/library/stdio/input.asm)
-000001f4       _x86_Read_Keypress
+000001b5       _x86_Disk_Reset
+Module: build/kernel/asm/input.obj(src/libraries/stdio/input.asm)
+00000200       _x86_Read_Keypress
 Module: build/kernel/c/kernel.obj(/home/user/BAPOS/src/kernel/kernel.c)
-00000202       _cstart_
-00000272       _clear_screen_
-00000275       _putc_
-Module: build/kernel/c/stdio.obj(/home/user/BAPOS/src/kernel/library/stdio/stdio.c)
-00000282       read_key_
-000002a1       clear_screen_
-000002a9       putc_
-000002ba+      puts_
-000002cb+      puts_f_
-000002ea       _printf
-0000041c+      printf_number_
-00000620+      _possibleChars
+0000020e       _cstart_
+0000027e       _clear_screen_
+00000281       _putc_
+Module: build/kernel/c/stdio.obj(/home/user/BAPOS/src/libraries/stdio/stdio.c)
+0000028e       read_key_
+000002ad       clear_screen_
+000002b5       putc_
+000002c6+      puts_
+000002d7+      puts_f_
+000002f6       _printf
+00000428+      printf_number_
+0000062c+      _possibleChars
 
 
                         +---------------------+
@@ -82,24 +82,24 @@ Module          Segment               Class           Address         Size
 
 src/kernel/kernel.asm
                 _ENTRY                CODE           00000000         0000001d
-src/kernel/power/power_options.asm
+src/libraries/power/power_options.asm
                 _TEXT                 CODE           0000001d         00000135
-src/kernel/library/stdio/print.asm
+src/libraries/stdio/print.asm
                 _TEXT                 CODE           00000152         0000004a
-src/kernel/disk/asmDisk.asm
-                _TEXT                 CODE           0000019c         00000058
-src/kernel/library/stdio/input.asm
-                _TEXT                 CODE           000001f4         0000000e
+src/libraries/disk/asmDisk.asm
+                _TEXT                 CODE           0000019c         00000064
+src/libraries/stdio/input.asm
+                _TEXT                 CODE           00000200         0000000e
 /home/user/BAPOS/src/kernel/kernel.c
-                _TEXT                 CODE           00000202         00000080
-                CONST                 DATA           000005b2         0000006d
-                CONST2                DATA           00000620         00000000
-                _DATA                 DATA           00000632         00000000
-/home/user/BAPOS/src/kernel/library/stdio/stdio.c
-                _TEXT                 CODE           00000282         0000032f
-                CONST                 DATA           00000620         00000000
-                CONST2                DATA           00000620         00000011
-                _DATA                 DATA           00000632         00000000
+                _TEXT                 CODE           0000020e         00000080
+                CONST                 DATA           000005be         0000006d
+                CONST2                DATA           0000062c         00000000
+                _DATA                 DATA           0000063e         00000000
+/home/user/BAPOS/src/libraries/stdio/stdio.c
+                _TEXT                 CODE           0000028e         0000032f
+                CONST                 DATA           0000062c         00000000
+                CONST2                DATA           0000062c         00000011
+                _DATA                 DATA           0000063e         00000000
 Warning! W1014: stack segment not found
 
 
@@ -108,6 +108,6 @@ Warning! W1014: stack segment not found
                         +-----------------------+
 
 Stack size:  0200 (512.)
-Memory size:  0632 (1586.)
+Memory size:  063e (1598.)
 Entry point address: 00000008
 Link time: 00:00.00

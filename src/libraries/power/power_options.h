@@ -1,4 +1,4 @@
 #pragma once
-#include "../library/stdint.h"
+#include "../stdint.h"
 
 void _cdecl x86_Shutdown();

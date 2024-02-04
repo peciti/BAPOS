@@ -1,5 +1,5 @@
 src/kernel/kernel.c(10): Warning! W200: 'error' has been referenced but never assigned a value
-src/kernel/kernel.c(10): Note! I2002: 'x86_Disk_Reset' defined in: src/kernel/disk/asmDisk.h(4)
+src/kernel/kernel.c(10): Note! I2002: 'x86_Disk_Reset' defined in: src/kernel/../libraries/disk/asmDisk.h(4)
 src/kernel/kernel.c(10): Warning! W102: Parameter 2: Type mismatch (warning)
 src/kernel/kernel.c(10): Note! I2003: source conversion type is 'unsigned char'
 src/kernel/kernel.c(10): Note! I2004: target conversion type is 'unsigned char *'

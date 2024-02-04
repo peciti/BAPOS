@@ -16,7 +16,12 @@ _x86_Disk_Read:
 	sti
 	push bp
 	mov bp, sp
-	
+
+	mov ax, [bp+6]
+	mov cx, [bp+8]
+	mov bx, [bp + 10]
+	call disk_read
+
 	mov sp, bp
 	pop bp
 	ret
