@@ -1,6 +1,6 @@
 start:
 	mov si, hello_world
-	
+
 print:
 	lodsb
 	cmp al, 0
@@ -8,11 +8,11 @@ print:
 	mov ah, 0x0e
 	int 0x10
 	jmp print
-	
+
 .done:
 	mov si, press_to_continue
 	call print
-	
+
 wait_input:
 	mov ah, 0x0
 	int 0x16
