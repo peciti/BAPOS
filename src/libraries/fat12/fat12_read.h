@@ -1,8 +1,13 @@
 #pragma once
 #include "../stdint.h"
 
-void fat12_find(char* filename);
-void fat12_read(uint16_t cluster);
+uint16_t fat12_find(char* filename); // searches root directory and returns the first fat cluster
+void fat12_read(uint16_t cluster, uint16_t load_segment, uint16_t load_offset); // loads from disk into memory
 
-#define LOAD_SEGMENT 0x2000
-#define LOAD_OFFSET 0x0
+#define LOAD_SEGMENT_TABLE 0x4000 // where root directory and FAT will be loaded
+#define LOAD_OFFSET_TABLE 0x0
+
+#define SECTORS_PER_FAT 9
+#define BYTES_PER_SECTOR 512
+#define RESERVED_SECTORS 1
+#define FAT_COUNT 2
