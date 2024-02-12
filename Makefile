@@ -49,6 +49,7 @@ kernel:
 	$(ASM) $(ASM_FLAGS) -o $(BUILD)/kernel/asm/disk.obj $(SRC)/libraries/disk/asmDisk.asm
 	$(CC16) $(CFLAGS16) -fo=$(BUILD)/kernel/c/kernel.obj $(KERNEL_SRC)/kernel.c
 	$(CC16) $(CFLAGS16) -fo=$(BUILD)/kernel/c/stdio.obj $(SRC)/libraries/stdio/stdio.c
+	$(CC16) $(CFLAGS16) -fo=$(BUILD)/kernel/c/fat12_read.obj $(SRC)/libraries/fat12/fat12_read.c
 	$(LD16) NAME $(BUILD)/kernel.bin FILE \{$(BUILD)/kernel/asm/kernel.obj $(BUILD)/kernel/asm/power.obj  $(BUILD)/kernel/asm/print.obj $(BUILD)/kernel/asm/disk.obj $(BUILD)/kernel/asm/input.obj $(BUILD)/kernel/c/kernel.obj $(BUILD)/kernel/c/stdio.obj \} OPTION MAP=$(BUILD)/kernel.map @$(KERNEL_SRC)/linker.lnk
 
 always:
