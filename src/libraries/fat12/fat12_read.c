@@ -19,9 +19,9 @@ uint16_t fat12_find(char* filename)
 	directorycopy = *directory;
 	for(uint16_t i = 0; i < 224; i++)
 	{
-		for(uint16_t i = 0; i < 11; i++)
+		for(uint16_t t = 0; i < 11; i++)
 		{
-			if(i == 11)
+			if(t == 11)
 			{
 				directory = directory + 26;
 				sector = &directory;
