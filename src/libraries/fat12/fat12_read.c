@@ -9,7 +9,9 @@ uint16_t fat12_find(char* filename)
 	uint16_t directory_sector;
 	uint16_t* filenamecopy;
 	uint32_t* directory;
-	uint32_t* directorycopu;
+	uint32_t* directorycopy;
+	uint16_t i;
+	uint16_t t;
 	directory_sector = SECTORS_PER_FAT * FAT_COUNT + RESERVED_SECTORS;
 	x86_Disk_Read(directory_sector, REPOSITORY_SIZE, LOAD_OFFSET_TABLE, LOAD_SEGMENT_TABLE);
 
@@ -17,9 +19,9 @@ uint16_t fat12_find(char* filename)
 	filenamecopy = *filename;
 	directory = LOAD_SEGMENT_TABLE * 16 + LOAD_OFFSET_TABLE;
 	directorycopy = *directory;
-	for(uint16_t i = 0; i < 224; i++)
+	for(i = 0; i < 224; i++)
 	{
-		for(uint16_t t = 0; i < 11; i++)
+		for(t = 0; i < 11; i++)
 		{
 			if(t == 11)
 			{
@@ -40,7 +42,7 @@ uint16_t fat12_find(char* filename)
 	}
 	// sector value if file was not found
 	sector = 64000;
-	return sector
+	return sector;
 }
 
 void fat12_read(uint16_t sector, uint16_t load_segment, uint16_t load_offset)
