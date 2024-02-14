@@ -21,7 +21,7 @@ uint16_t fat12_find(char* filename)
 	directorycopy = *directory;
 	for(i = 0; i < 224; i++)
 	{
-		for(t = 0; i < 11; i++)
+		for(t = 0; t < 11; t++)
 		{
 			if(t == 11)
 			{
@@ -31,7 +31,7 @@ uint16_t fat12_find(char* filename)
 			}
 			if(&filenamecopy != &directorycopy)
 			{
-				break;
+				continue;
 			}
 			filenamecopy++;
 			directorycopy++;
@@ -57,7 +57,7 @@ void fat12_read(uint16_t sector, uint16_t load_segment, uint16_t load_offset)
 		uint16_t FAT_sector;
 		FAT_sector = RESERVED_SECTORS;
 		x86_Disk_Read(FAT_sector, SECTORS_PER_FAT, LOAD_OFFSET_TABLE, LOAD_SEGMENT_TABLE);
-
+		printf("Loading File%n");
 		while(1)
 		{
 			sector = sector + 31;

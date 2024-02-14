@@ -2,6 +2,7 @@
 #include "../libraries/stdio/stdio.h"
 #include "../libraries/disk/asmDisk.h"
 #include "../libraries/power/power_options.h"
+#include "../libraries/fat12/fat12_read.h"
 
 void _cdecl cstart_(){
 	uint8_t error;
@@ -24,6 +25,10 @@ void _cdecl cstart_(){
 			}
 			if(c == 13){
 				clear_screen();
+			}
+			if(c == 'H')
+			{
+				run_program("HELLO   BIN", 0x4000, 0x0);
 			}
 		}
 	}
