@@ -8,7 +8,7 @@ void _cdecl cstart_(){
 	char c;
 
 	x86_Disk_Reset(0, error);
-	
+
 	printf("Kernel Loaded! Welcome to BAPOS");
 	printf("%nDisk Error: %i", error);
 	if (error == 0)
@@ -18,7 +18,7 @@ void _cdecl cstart_(){
 		while(1){
 			c = read_key();
 			putc(c);
-			
+
 			if(c == 17){
 				x86_Shutdown();
 			}

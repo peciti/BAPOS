@@ -16,7 +16,7 @@ bdb_fat_count:				db 2
 bdb_dir_entries_count:		dw 224
 bdb_total_sectors:			dw 2880
 bdb_media_descriptor_type:	db 0F0h
-bdb_sectors_per_fat:		dw 9 
+bdb_sectors_per_fat:		dw 9
 bdb_sectors_per_track:		dw 18
 bdb_heads:					dw 2
 bdb_hidden_sectors:			dd 0
@@ -39,7 +39,7 @@ start:
 	mov ds, ax
 
 	jmp 0x00:stack
-	
+
 stack:
 	sti
 	mov bp, 0x7c00
@@ -48,7 +48,7 @@ stack:
 
 main:
 	mov [ebr_drive_number], dl
-	
+
 	; Find FAT12 Root Directory
 	mov ax, [bdb_sectors_per_fat]
 	mov bl, [bdb_fat_count]
@@ -61,11 +61,11 @@ main:
 	shl ax, 5
 	xor dx, dx
 	div word [bdb_bytes_per_sector]
-	
+
 	test dx, dx
 	jz root_dir
 	inc ax
-	
+
 root_dir:
 	; read root dir
 	mov cl, al
@@ -120,7 +120,7 @@ root_dir:
 	mov cl, 1
 	mov dl, [ebr_drive_number]
 	call disk_read
-	
+
 	;this will overflow	64kB limit
 	add bx, [bdb_bytes_per_sector]
 
@@ -168,7 +168,7 @@ root_dir:
 
 	cli
 	hlt
-	
+
 disk_read:
 	push cx
 	call lba_to_chs
@@ -179,7 +179,7 @@ disk_read:
 	int 0x13
 
 	jc read_error
-	
+
 .done:
 	ret
 
@@ -189,14 +189,14 @@ disk_read:
 lba_to_chs:
 	push ax
 	push dx
-	
+
 	 xor dx, dx                          ; dx = 0
 	 div word [bdb_sectors_per_track]    ; ax = LBA / SectorsPerTrack
 	                                            ; dx = LBA % SectorsPerTrack
-	
+
 	 inc dx                              ; dx = (LBA % SectorsPerTrack + 1) = sector
 	 mov cx, dx                          ; cx = sector
-	
+
 	 xor dx, dx                          ; dx = 0
 	 div word [bdb_heads]                ; ax = (LBA / SectorsPerTrack) / Heads = cylinder
 	                                            ; dx = (LBA / SectorsPerTrack) % Heads = head
@@ -204,7 +204,7 @@ lba_to_chs:
 	 mov ch, al                          ; ch = cylinder (lower 8 bits)
 	 shl ah, 6
 	 or cl, ah                           ; put upper 2 bits of cylinder in CL
-	
+
 	 pop ax
 	 mov dl, al                          ; restore DL
 	 pop ax
@@ -217,7 +217,7 @@ read_error:
 	mov ah, 0
 	int 0x16
 	int 0x19
-	
+
 	ret
 
 kernel_not_found_error:
@@ -228,7 +228,7 @@ kernel_not_found_error:
 	int 0x16
 	int 0x19
 	ret
-	
+
 ; prints a message
 print:
 	lodsb
@@ -238,7 +238,7 @@ print:
 	int 0x10
 
 	jmp print
-	
+
 .done:
 	ret
 
@@ -252,7 +252,7 @@ wait_input:
 	ret
 
 user_input_msg: db 'Press any key to continue...', endl, 0
-error_msg: db 'Error! Press any key to reboot...', endl, 0 
+error_msg: db 'Error! Press any key to reboot...', endl, 0
 kernel_not_found_msg: db 'Kernel not found! Press any key to reboot...', endl, 0
 kernel_cluster:	dw 0
 file_kernel_bin: db 'KERNEL  BIN'
