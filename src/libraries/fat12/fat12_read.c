@@ -29,7 +29,7 @@ uint16_t fat12_find(char* filename)
 				sector = &directory;
 				return sector;
 			}
-			if(&filenamecopy != &directorycopu)
+			if(&filenamecopy != &directorycopy)
 			{
 				break;
 			}
@@ -58,7 +58,7 @@ void fat12_read(uint16_t sector, uint16_t load_segment, uint16_t load_offset)
 		FAT_sector = RESERVED_SECTORS;
 		x86_Disk_Read(FAT_sector, SECTORS_PER_FAT, LOAD_OFFSET_TABLE, LOAD_SEGMENT_TABLE);
 
-		while(true)
+		while(1)
 		{
 			sector = sector + 31;
 			if(sector == 0x0ff8)
@@ -73,9 +73,10 @@ void fat12_read(uint16_t sector, uint16_t load_segment, uint16_t load_offset)
 
 void run_program(char* filename, uint16_t load_segment, uint16_t load_offset)
 {
-uint16_t load_segment_copy = load_segment;
-uint16_t load_offset_copy = load_offset;
+uint16_t load_segment_copy;
+uint16_t load_offset_copy;
+load_segment_copy = load_segment;
+load_offset_copy = load_offset;
 fat12_read(fat12_find(filename), load_segment, load_offset);
-
 
 }
