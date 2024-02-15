@@ -4,16 +4,16 @@ src/libraries/fat12/fat12_read.c(19): Note! I2004: target conversion type is 'un
 src/libraries/fat12/fat12_read.c(21): Warning! W102: Type mismatch (warning)
 src/libraries/fat12/fat12_read.c(21): Note! I2003: source conversion type is 'unsigned long'
 src/libraries/fat12/fat12_read.c(21): Note! I2004: target conversion type is 'unsigned long *'
-src/libraries/fat12/fat12_read.c(29): Warning! W102: Type mismatch (warning)
-src/libraries/fat12/fat12_read.c(29): Note! I2003: source conversion type is 'unsigned long **'
-src/libraries/fat12/fat12_read.c(29): Note! I2004: target conversion type is 'unsigned short'
-src/libraries/fat12/fat12_read.c(32): Warning! W113: Pointer type mismatch
-src/libraries/fat12/fat12_read.c(32): Note! I2006: operator '!='
-src/libraries/fat12/fat12_read.c(32): Note! I2007: first operand type is 'unsigned short **'
-src/libraries/fat12/fat12_read.c(32): Note! I2008: second operand type is 'unsigned long **'
-src/libraries/fat12/fat12_read.c(40): Warning! W102: Type mismatch (warning)
-src/libraries/fat12/fat12_read.c(40): Note! I2003: source conversion type is 'unsigned long'
-src/libraries/fat12/fat12_read.c(40): Note! I2004: target conversion type is 'unsigned long *'
+src/libraries/fat12/fat12_read.c(30): Warning! W102: Type mismatch (warning)
+src/libraries/fat12/fat12_read.c(30): Note! I2003: source conversion type is 'unsigned long **'
+src/libraries/fat12/fat12_read.c(30): Note! I2004: target conversion type is 'unsigned short'
+src/libraries/fat12/fat12_read.c(33): Warning! W113: Pointer type mismatch
+src/libraries/fat12/fat12_read.c(33): Note! I2006: operator '!='
+src/libraries/fat12/fat12_read.c(33): Note! I2007: first operand type is 'unsigned short **'
+src/libraries/fat12/fat12_read.c(33): Note! I2008: second operand type is 'unsigned long **'
 src/libraries/fat12/fat12_read.c(41): Warning! W102: Type mismatch (warning)
-src/libraries/fat12/fat12_read.c(41): Note! I2003: source conversion type is 'char'
-src/libraries/fat12/fat12_read.c(41): Note! I2004: target conversion type is 'unsigned short *'
+src/libraries/fat12/fat12_read.c(41): Note! I2003: source conversion type is 'unsigned long'
+src/libraries/fat12/fat12_read.c(41): Note! I2004: target conversion type is 'unsigned long *'
+src/libraries/fat12/fat12_read.c(42): Warning! W102: Type mismatch (warning)
+src/libraries/fat12/fat12_read.c(42): Note! I2003: source conversion type is 'char'
+src/libraries/fat12/fat12_read.c(42): Note! I2004: target conversion type is 'unsigned short *'

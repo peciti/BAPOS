@@ -21,6 +21,7 @@ uint16_t fat12_find(char* filename)
 	directorycopy = *directory;
 	for(i = 0; i < 224; i++)
 	{
+		printf("directory entry: %x %n", directory);
 		for(t = 0; t < 11; t++)
 		{
 			if(t == 11)
