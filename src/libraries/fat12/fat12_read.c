@@ -8,8 +8,8 @@ uint16_t fat12_find(char* filename)
 	uint16_t sector;
 	uint16_t directory_sector;
 	uint16_t* filenamecopy;
-	uint32_t* directory;
-	uint32_t* directorycopy;
+	uint32_t __huge* _near directory;
+	uint32_t __huge* directorycopy;
 	uint16_t i;
 	uint16_t t;
 	directory_sector = SECTORS_PER_FAT * FAT_COUNT + RESERVED_SECTORS;
@@ -17,27 +17,38 @@ uint16_t fat12_find(char* filename)
 
 	// go through root directory entries and find a matching one
 	filenamecopy = *filename;
+	printf("LOAD_SEGMENT_TABLE: %x %n", LOAD_SEGMENT_TABLE);
 	directory = LOAD_SEGMENT_TABLE * 16 + LOAD_OFFSET_TABLE;
+	printf("directory start: %x %n", directory);
+	read_key();
 	directorycopy = *directory;
 	for(i = 0; i < 224; i++)
 	{
 		printf("directory entry: %x %n", directory);
+		read_key();
 		for(t = 0; t < 11; t++)
 		{
 			if(t == 11)
 			{
+				printf("directory found! %n");
+				read_key();
 				directory = directory + 26;
 				sector = &directory;
 				return sector;
 			}
-			if(&filenamecopy != &directorycopy)
+			if(&filenamecopy == &directorycopy)
 			{
+				printf("Matching char: %c %c %n", &filenamecopy, &directorycopy);
+				read_key();
+				filenamecopy++;
+				directorycopy++;
 				continue;
 			}
-			filenamecopy++;
-			directorycopy++;
 		}
+		printf("Moving to next directory %n");
 		directory = directory + 32;
+		printf("Next directory: %x %n", directory);
+		read_key();
 		directorycopy = *directory;
 		filenamecopy = *filename;
 	}
