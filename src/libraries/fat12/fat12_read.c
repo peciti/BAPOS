@@ -2,47 +2,47 @@
 #include "../disk/asmDisk.h"
 #include "../stdio/stdio.h"
 
-uint16_t fat12_find(char* filename)
+uint16_t fat12_find(char filename[])
 {
 	// load root directory into memory
 	uint16_t sector;
 	uint16_t directory_sector;
-	uint16_t* filenamecopy;
-	uint32_t __huge* _near directory;
-	uint32_t __huge* directorycopy;
+	unsigned char far* directory;
+	unsigned char far* directorycopy;
 	uint16_t i;
 	uint16_t t;
 	directory_sector = SECTORS_PER_FAT * FAT_COUNT + RESERVED_SECTORS;
 	x86_Disk_Read(directory_sector, REPOSITORY_SIZE, LOAD_OFFSET_TABLE, LOAD_SEGMENT_TABLE);
 
 	// go through root directory entries and find a matching one
-	filenamecopy = *filename;
 	printf("LOAD_SEGMENT_TABLE: %x %n", LOAD_SEGMENT_TABLE);
-	directory = LOAD_SEGMENT_TABLE * 16 + LOAD_OFFSET_TABLE;
+	directory = (unsigned char far*)0x40000000;
 	printf("directory start: %x %n", directory);
 	read_key();
-	directorycopy = *directory;
+	directorycopy = directory;
 	for(i = 0; i < 224; i++)
 	{
 		printf("directory entry: %x %n", directory);
 		read_key();
-		for(t = 0; t < 11; t++)
+		for(t = 0; t <= 11; t++)
 		{
+			printf("filename_char: %c, directory_char: %c %n", filename[t], *directorycopy);
 			if(t == 11)
 			{
 				printf("directory found! %n");
 				read_key();
 				directory = directory + 26;
-				sector = &directory;
+				sector = *directory;
 				return sector;
 			}
-			if(&filenamecopy == &directorycopy)
+			if(filename[t] == *directorycopy)
 			{
-				printf("Matching char: %c %c %n", &filenamecopy, &directorycopy);
+				printf("Matching char: %c %n", *directorycopy);
 				read_key();
-				filenamecopy++;
 				directorycopy++;
-				continue;
+			}
+			else{
+			break;
 			}
 		}
 		printf("Moving to next directory %n");
@@ -50,7 +50,6 @@ uint16_t fat12_find(char* filename)
 		printf("Next directory: %x %n", directory);
 		read_key();
 		directorycopy = *directory;
-		filenamecopy = *filename;
 	}
 	// sector value if file was not found
 	sector = 64000;

@@ -9,13 +9,13 @@ _x86_Disk_Read:
 	push bp
 	mov bp, sp
 
-	mov ax, [bp + 6]
-	mov cx, [bp + 8]
-	mov bx, [bp + 10]
+	mov ax, [bp + 4]
+	mov cx, [bp + 6]
+	mov bx, [bp + 8]
 
 	push es
 	push dx
-	mov dx, [bp + 12]
+	mov dx, [bp + 14]
 	mov es, dx
 	pop dx
 

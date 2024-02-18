@@ -3,7 +3,7 @@
 
 uint16_t fat12_find(char* filename); // searches root directory and returns the first fat cluster
 void fat12_read(uint16_t cluster, uint16_t load_segment, uint16_t load_offset); // loads from disk into memory
-void run_program(char* filename, uint16_t load_segment, uint16_t load_offset); // loads program into memory and jumps to it
+void run_program(char filename[], uint16_t load_segment, uint16_t load_offset); // loads program into memory and jumps to it
 
 #define LOAD_SEGMENT_TABLE 0x4000 // where root directory and FAT will be loaded
 #define LOAD_OFFSET_TABLE 0x0
