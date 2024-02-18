@@ -13,12 +13,10 @@ _x86_Disk_Read:
 	mov cx, [bp + 6]
 	mov bx, [bp + 8]
 
+	mov dx, [bp + 10]
 	push es
-	push dx
-	mov dx, [bp + 14]
 	mov es, dx
-	pop dx
-
+	xor dx, dx
 	call disk_read
 
 	pop es

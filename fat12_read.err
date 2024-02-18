@@ -1,3 +1,0 @@
-src/libraries/fat12/fat12_read.c(52): Warning! W102: Type mismatch (warning)
-src/libraries/fat12/fat12_read.c(52): Note! I2003: source conversion type is 'unsigned char'
-src/libraries/fat12/fat12_read.c(52): Note! I2004: target conversion type is 'unsigned char __far *'

@@ -7,8 +7,9 @@ uint16_t fat12_find(char filename[])
 	// load root directory into memory
 	uint16_t sector;
 	uint16_t directory_sector;
-	unsigned char far* directory;
-	unsigned char far* directorycopy;
+	__segment directoryseg = LOAD_SEGMENT_TABLE;
+	char __based(directoryseg)* directory;
+	char __based(directoryseg)* directorycopy;
 	uint16_t i;
 	uint16_t t;
 	directory_sector = SECTORS_PER_FAT * FAT_COUNT + RESERVED_SECTORS;
@@ -16,7 +17,7 @@ uint16_t fat12_find(char filename[])
 
 	// go through root directory entries and find a matching one
 	printf("LOAD_SEGMENT_TABLE: %x %n", LOAD_SEGMENT_TABLE);
-	directory = (unsigned char far*)0x40000000;
+	directory = LOAD_OFFSET_TABLE;
 	printf("directory start: %x %n", directory);
 	read_key();
 	directorycopy = directory;
@@ -49,7 +50,7 @@ uint16_t fat12_find(char filename[])
 		directory = directory + 32;
 		printf("Next directory: %x %n", directory);
 		read_key();
-		directorycopy = *directory;
+		directorycopy = directory;
 	}
 	// sector value if file was not found
 	sector = 64000;
