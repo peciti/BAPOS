@@ -1,7 +1,7 @@
 Open Watcom Linker Version 2.0 beta Feb 16 2024 01:42:42 (32-bit)
 Copyright (c) 2002-2024 The Open Watcom Contributors. All Rights Reserved.
 Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
-Created on:       24/02/18 16:04:21
+Created on:       24/02/19 02:03:12
 Executable Image: build/kernel.bin
 creating a RAW Binary Image executable
 
@@ -13,7 +13,7 @@ creating a RAW Binary Image executable
 Group                           Address              Size
 =====                           =======              ====
 
-DGROUP                          00000738             0000017a
+DGROUP                          0000076a             0000016a
 
 
 
@@ -25,10 +25,10 @@ Segment                Class          Group          Address         Size
 =======                =====          =====          =======         ====
 
 _ENTRY                 CODE           AUTO           00000000        0000001d
-_TEXT                  CODE           AUTO           0000001d        0000071b
-CONST                  DATA           DGROUP         00000738        00000167
-CONST2                 DATA           DGROUP         000008a0        00000011
-_DATA                  DATA           DGROUP         000008b2        00000000
+_TEXT                  CODE           AUTO           0000001d        0000074c
+CONST                  DATA           DGROUP         0000076a        00000158
+CONST2                 DATA           DGROUP         000008c2        00000011
+_DATA                  DATA           DGROUP         000008d4        00000000
 
 
                         +----------------+
@@ -66,11 +66,11 @@ Module: build/kernel/c/stdio.obj(/home/user/BAPOS/src/libraries/stdio/stdio.c)
 000002ef+      puts_f_
 0000030e       _printf
 00000440+      printf_number_
-000008a0+      _possibleChars
+000008c2+      _possibleChars
 Module: build/kernel/c/fat12_read.obj(/home/user/BAPOS/src/libraries/fat12/fat12_read.c)
 000005d5+      fat12_find_
-00000714       run_program_
-00000717*      fat12_read_
+000006bc+      fat12_read_
+00000737       run_program_
 
 
                         +---------------------+
@@ -95,19 +95,19 @@ src/libraries/stdio/input.asm
                 _TEXT                 CODE           00000207         0000000e
 /home/user/BAPOS/src/kernel/kernel.c
                 _TEXT                 CODE           00000215         00000091
-                CONST                 DATA           00000738         00000079
-                CONST2                DATA           000008a0         00000000
-                _DATA                 DATA           000008b2         00000000
+                CONST                 DATA           0000076a         00000079
+                CONST2                DATA           000008c2         00000000
+                _DATA                 DATA           000008d4         00000000
 /home/user/BAPOS/src/libraries/stdio/stdio.c
                 _TEXT                 CODE           000002a6         0000032f
-                CONST                 DATA           000007b2         00000000
-                CONST2                DATA           000008a0         00000011
-                _DATA                 DATA           000008b2         00000000
+                CONST                 DATA           000007e4         00000000
+                CONST2                DATA           000008c2         00000011
+                _DATA                 DATA           000008d4         00000000
 /home/user/BAPOS/src/libraries/fat12/fat12_read.c
-                _TEXT                 CODE           000005d5         00000163
-                CONST                 DATA           000007b2         000000ed
-                CONST2                DATA           000008b2         00000000
-                _DATA                 DATA           000008b2         00000000
+                _TEXT                 CODE           000005d5         00000194
+                CONST                 DATA           000007e4         000000de
+                CONST2                DATA           000008d4         00000000
+                _DATA                 DATA           000008d4         00000000
 Warning! W1014: stack segment not found
 
 
@@ -116,6 +116,6 @@ Warning! W1014: stack segment not found
                         +-----------------------+
 
 Stack size:  0200 (512.)
-Memory size:  08b2 (2226.)
+Memory size:  08d4 (2260.)
 Entry point address: 00000008
 Link time: 00:00.00

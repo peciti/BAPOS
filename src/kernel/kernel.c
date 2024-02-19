@@ -26,9 +26,9 @@ void _cdecl cstart_(){
 			if(c == 13){
 				clear_screen();
 			}
-			if(c == 'H')
+			if(c == '`')
 			{
-				run_program("HELLO   BIN", 0x4000, 0x0);
+				run_program("HELLO   BIN", 0x1000, 0x0);
 			}
 		}
 	}
