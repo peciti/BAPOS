@@ -1,10 +1,17 @@
 [bits 16]
 [org 0x0]
 
-jmp short start
-
 start:
-	mov si, hello_world
+ jmp test
+
+; start:
+; mov si, hello_world
+
+test:
+	mov al, 65
+	mov ah, 0x0e
+	int 0x10
+	jmp return
 
 print:
 	lodsb
@@ -15,9 +22,10 @@ print:
 	jmp print
 
 .done:
-	jmp halt
+	jmp return
 
-halt:
-	jmp halt
+return:
+	ret
+
 hello_world: db 'Hello World!', 0
 
