@@ -1,3 +1,8 @@
+[bits 16]
+[org 0x0]
+
+jmp short start
+
 start:
 	mov si, hello_world
 
@@ -10,14 +15,9 @@ print:
 	jmp print
 
 .done:
-	mov si, press_to_continue
-	call print
+	jmp halt
 
-wait_input:
-	mov ah, 0x0
-	int 0x16
-	mov si, hello_world
-	call print
-
+halt:
+	jmp halt
 hello_world: db 'Hello World!', 0
-press_to_continue: db 'Press any key to continue...', 0
+

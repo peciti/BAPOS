@@ -73,6 +73,7 @@ void fat12_read(uint16_t sector, uint16_t load_segment, uint16_t load_offset)
 		{
 			sector = sector + 31;
 			printf("sector: %x %n", sector);
+			printf("Loading at: %x:%x", load_segment, load_offset);
 			read_key();
 
 			/*if(sector == 0x0ff8)
@@ -93,16 +94,19 @@ void run_program(char* filename, uint16_t load_segment, uint16_t load_offset)
 {
 	uint16_t load_segment_copy;
 	uint16_t load_offset_copy;
-	load_segment_copy = load_segment;
+	load_segment_copy = 0x5000;
 	load_offset_copy = load_offset;
 	fat12_read(fat12_find(filename), load_segment, load_offset);
-
+	printf("Jumping to %x:%x %n", load_segment_copy, load_offset);
+	read_key();
 	__asm {
 
 	mov ax, load_segment_copy
-	mov ds, ax
+	// mov ds, ax
 	// mov ss, ax
 	mov es, ax
+	// mov cs, ax
+
 	mov bx, load_offset
 	xor ax, ax
 

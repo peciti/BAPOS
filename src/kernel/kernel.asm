@@ -25,6 +25,6 @@ entry:
 
 	cli
 	hlt
-	
+
 halt:
 	jmp halt
