@@ -1,8 +1,8 @@
 [bits 16]
-[org 0x0]
 
 start:
- jmp test
+	jmp test
+	ret
 
 ; start:
 ; mov si, hello_world
