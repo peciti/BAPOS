@@ -4,6 +4,7 @@
 
 uint16_t fat12_find(char filename[])
 {
+	char c;
 	// load root directory into memory
 	uint16_t sector;
 	uint16_t directory_sector;
@@ -29,13 +30,13 @@ uint16_t fat12_find(char filename[])
 				directory = directory + 26;
 				sector = *directory;
 				printf("sector: %x %n", sector);
-				read_key();
+				c = read_key();
 				return sector;
 			}
 			if(filename[t] == *directorycopy)
 			{
 				printf("Matching char: %c %n", *directorycopy);
-				read_key();
+				c = read_key();
 				directorycopy++;
 			}
 			else{
@@ -45,7 +46,7 @@ uint16_t fat12_find(char filename[])
 		printf("Moving to next directory %n");
 		directory = directory + 32;
 		printf("Next directory: %x %n", directory);
-		read_key();
+		c = read_key();
 		directorycopy = directory;
 	}
 	// sector value if file was not found
@@ -55,6 +56,7 @@ uint16_t fat12_find(char filename[])
 
 void fat12_read(uint16_t sector, uint16_t load_segment, uint16_t load_offset)
 {
+	char c;
 	clear_screen();
 	if(sector == 64000)
 	{
@@ -74,7 +76,7 @@ void fat12_read(uint16_t sector, uint16_t load_segment, uint16_t load_offset)
 			sector = sector + 31;
 			printf("sector: %x %n", sector);
 			printf("Loading at: %x:%x %n", load_segment, load_offset);
-			read_key();
+			c = read_key();
 
 			/*if(sector == 0x0ff8)
 			{
@@ -86,7 +88,7 @@ void fat12_read(uint16_t sector, uint16_t load_segment, uint16_t load_offset)
 		}
 		clear_screen();
 		printf("File Loaded press any key to continue...%n");
-		read_key();
+		c = read_key();
 	}
 }
 
@@ -94,9 +96,7 @@ void run_program(char* filename, uint16_t load_segment, uint16_t load_offset)
 {
 	uint16_t KERNSEG = 0x6000;
 	fat12_read(fat12_find(filename), load_segment, load_offset);
-	printf("Jumping to %x:%x %n", load_segment, load_offset);
 	__asm {
-	call read_key
 	push ax
 	push bx
 	push cx

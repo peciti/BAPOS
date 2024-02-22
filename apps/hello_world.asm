@@ -1,13 +1,13 @@
 [bits 16]
 .entry:
+	sti
 	jmp start
 
 start:
 	cli
 	mov ax, ds
 	mov ss, ax
-	mov sp, 0xffff
-	mov bp, sp
+	mov sp, 0x1000
 	sti
 
 	jmp main
