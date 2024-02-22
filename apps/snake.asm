@@ -3,7 +3,6 @@
 ;
 
 [bits 16]                                 ; Bootloader starts at 0x7c00
-org 7c00h
 
 C_BLACK          equ 00h
 C_WHITE          equ 0fh

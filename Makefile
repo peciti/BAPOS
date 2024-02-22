@@ -23,6 +23,7 @@ $(BUILD)/floppy.img: bootloader kernel
 	dd if=$(BUILD)/boot.bin of=$(BUILD)/floppy.img conv=notrunc
 	mcopy -i $(BUILD)/floppy.img $(BUILD)/kernel.bin "::kernel.bin"
 	mcopy -i $(BUILD)/floppy.img apps/hello_world.bin "::hello.bin"
+	mcopy -i $(BUILD)/floppy.img apps/snake.bin "::snake.bin"
 
 snake_floppy: $(BUILD)/snake_floppy.img
 $(BUILD)/snake_floppy.img:

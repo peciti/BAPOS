@@ -1,24 +1,20 @@
 [bits 16]
+.entry:
+	jmp start
 
 start:
 	cli
 	mov ax, ds
 	mov ss, ax
-	mov sp, 0
+	mov sp, 0xffff
 	mov bp, sp
 	sti
 
-	jmp test
+	jmp main
 	ret
 
-; start:
-; mov si, hello_world
-
-test:
-	mov al, 'A'
-	mov ah, 0x0e
-	int 0x10
-	jmp return
+main:
+ mov si, hello_world
 
 print:
 	lodsb
