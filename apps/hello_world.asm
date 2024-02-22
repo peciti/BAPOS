@@ -8,7 +8,7 @@ start:
 ; mov si, hello_world
 
 test:
-	mov al, 65
+	mov al, 'A'
 	mov ah, 0x0e
 	int 0x10
 	jmp return
