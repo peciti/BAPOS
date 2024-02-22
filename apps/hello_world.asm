@@ -1,6 +1,13 @@
 [bits 16]
 
 start:
+	cli
+	mov ax, ds
+	mov ss, ax
+	mov sp, 0
+	mov bp, sp
+	sti
+
 	jmp test
 	ret
 

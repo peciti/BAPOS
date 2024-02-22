@@ -95,8 +95,8 @@ void run_program(char* filename, uint16_t load_segment, uint16_t load_offset)
 	uint16_t KERNSEG = 0x6000;
 	fat12_read(fat12_find(filename), load_segment, load_offset);
 	printf("Jumping to %x:%x %n", load_segment, load_offset);
-	read_key();
 	__asm {
+	call read_key
 	push ax
 	push bx
 	push cx
@@ -104,19 +104,10 @@ void run_program(char* filename, uint16_t load_segment, uint16_t load_offset)
 
 	mov ax, load_segment
 
-	cli
-	mov dx, sp
-	mov ss, ax
-	mov sp, ax
-	push dx
-	sti
-
 	mov ds, ax
 	mov es, ax
 
 	mov bx, load_offset
-	xor ax, ax
-
 
 	call es:bx
 
