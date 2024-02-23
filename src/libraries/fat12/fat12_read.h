@@ -13,3 +13,4 @@ void run_program(char filename[], uint16_t load_segment, uint16_t load_offset); 
 #define RESERVED_SECTORS 1
 #define FAT_COUNT 2
 #define REPOSITORY_SIZE 14
+#define KERNSEG 0x6000

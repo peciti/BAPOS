@@ -1,6 +1,7 @@
 [bits 16]
+[org 0x1000]
+
 .entry:
-	sti
 	jmp start
 
 start:
@@ -10,14 +11,21 @@ start:
 	mov sp, 0x1000
 	sti
 
+	xor ax, ax
+	mov al, 0x03
+	int 0x10
+	xor bx, bx
+
 	jmp main
 	ret
 
 main:
- mov si, hello_world
+	mov si, hello_world
 
 print:
 	lodsb
+	mov bh, 0
+	mov bl, 0xf
 	cmp al, 0
 	je .done
 	mov ah, 0x0e
@@ -25,9 +33,6 @@ print:
 	jmp print
 
 .done:
-	jmp return
-
-return:
 	ret
 
 hello_world: db 'Hello World!', 0
