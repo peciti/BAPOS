@@ -1,5 +1,4 @@
 [bits 16]
-[org 0x1000]
 
 .entry:
 	jmp start
@@ -8,7 +7,7 @@ start:
 	cli
 	mov ax, ds
 	mov ss, ax
-	mov sp, 0x1000
+	mov sp, 0
 	sti
 
 	xor ax, ax
