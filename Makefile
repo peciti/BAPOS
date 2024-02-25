@@ -22,14 +22,14 @@ $(BUILD)/floppy.img: bootloader kernel
 	sudo mkfs.fat -F 12 -n "BAPOS" $(BUILD)/floppy.img
 	dd if=$(BUILD)/boot.bin of=$(BUILD)/floppy.img conv=notrunc
 	mcopy -i $(BUILD)/floppy.img $(BUILD)/kernel.bin "::kernel.bin"
-	mcopy -i $(BUILD)/floppy.img apps/hello_world.bin "::hello.bin"
-	mcopy -i $(BUILD)/floppy.img apps/snake.bin "::snake.bin"
+	mcopy -i $(BUILD)/floppy.img apps/build/hello_world.bin "::hello.bin"
+	mcopy -i $(BUILD)/floppy.img apps/build/snake.bin "::snake.bin"
 
 snake_floppy: $(BUILD)/snake_floppy.img
 $(BUILD)/snake_floppy.img:
 	dd bs=512 count=2880 if=/dev/zero of=$(BUILD)/snake_floppy.img	
 		sudo mkfs.fat -F 12 -n "SNAKE" $(BUILD)/snake_floppy.img
-		dd if=apps/snake.bin of=$(BUILD)/snake_floppy.img conv=notrunc
+		dd if=apps/build/snake.bin of=$(BUILD)/snake_floppy.img conv=notrunc
 
 #
 #	Bootloader

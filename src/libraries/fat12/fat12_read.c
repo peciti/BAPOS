@@ -88,6 +88,12 @@ void fat12_read(uint16_t sector, uint16_t load_segment, uint16_t load_offset)
 		printf("File Loaded press any key to continue...%n");
 		read_key();
 	}
+
+
+
+
+
+
 }
 
 void run_program(char* filename, uint16_t load_segment, uint16_t load_offset)
@@ -105,16 +111,24 @@ void run_program(char* filename, uint16_t load_segment, uint16_t load_offset)
 	mov es, ax
 
 	mov bx, load_offset
+	push bp
 
 	call es:bx
 
+	pop ax
+	cmp ax, 1
+	je return
+error:
+	call read_key
+
+return:
 	mov ax, KERNSEG
 	mov es, ax
 	mov ds, ax
 
 	cli
-	pop ax
-	mov sp, ax
+	pop bp
+	mov sp, 0
 	mov ax, KERNSEG
 	mov ss, ax
 	sti
