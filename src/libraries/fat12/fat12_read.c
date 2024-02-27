@@ -127,7 +127,9 @@ return:
 	mov ds, ax
 
 	cli
-	pop bp
+	pop bx
+	mov bp, bx
+	xor bx, bx
 	mov sp, 0
 	mov ax, KERNSEG
 	mov ss, ax
