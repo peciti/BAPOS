@@ -41,8 +41,7 @@ print:
 	ret
 
 end:
-	push 1
-	ret
+	retf
 
 hello_msg: db 'Hello World!', endl, 0
 

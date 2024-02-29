@@ -1,1 +1,1 @@
-src/libraries/fat12/fat12_read.c(68): Warning! W202: Symbol 'FATptr' has been defined, but not referenced
+src/libraries/fat12/fat12_read.c(69): Warning! W202: Symbol 'FATptr' has been defined, but not referenced

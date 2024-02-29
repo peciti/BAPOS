@@ -1,6 +1,7 @@
 #include "fat12_read.h"
 #include "../disk/asmDisk.h"
 #include "../stdio/stdio.h"
+#include "../asm_functions/asm_functions.h"
 
 uint16_t fat12_find(char filename[])
 {
@@ -99,45 +100,6 @@ void fat12_read(uint16_t sector, uint16_t load_segment, uint16_t load_offset)
 void run_program(char* filename, uint16_t load_segment, uint16_t load_offset)
 {
 	fat12_read(fat12_find(filename), load_segment, load_offset);
-	__asm {
-	push ax
-	push bx
-	push cx
-	push dx
+	call_program(load_segment, load_offset);
 
-	mov ax, load_segment
-
-	mov ds, ax
-	mov es, ax
-
-	mov bx, load_offset
-	push bp
-
-	call es:bx
-
-	pop ax
-	cmp ax, 1
-	je return
-error:
-	call read_key
-
-return:
-	mov ax, KERNSEG
-	mov es, ax
-	mov ds, ax
-
-	cli
-	pop bx
-	mov bp, bx
-	xor bx, bx
-	mov sp, 0
-	mov ax, KERNSEG
-	mov ss, ax
-	sti
-
-	pop dx
-	pop cx
-	pop bx
-	pop ax
-	}
 }
