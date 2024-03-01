@@ -100,6 +100,35 @@ void fat12_read(uint16_t sector, uint16_t load_segment, uint16_t load_offset)
 void run_program(char* filename, uint16_t load_segment, uint16_t load_offset)
 {
 	fat12_read(fat12_find(filename), load_segment, load_offset);
-	call_program(load_segment, load_offset);
-
+	__asm{
+		push ax
+		push bx
+		push cx
+		push dx
+	
+		mov ax, load_segment
+	
+		mov ds, ax
+		mov es, ax
+	
+		mov bx, load_offset
+	
+		call es:bx
+	
+		mov ax, KERNSEG
+		mov es, ax
+		mov ds, ax
+	
+		cli
+		pop ax
+		mov sp, ax
+		mov ax, KERNSEG
+		mov ss, ax
+		sti
+	
+		pop dx
+		pop cx
+		pop bx
+		pop ax
+		}
 }
