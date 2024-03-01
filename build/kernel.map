@@ -1,7 +1,7 @@
 Open Watcom Linker Version 2.0 beta Jan 12 2024 01:50:46 (32-bit)
 Copyright (c) 2002-2024 The Open Watcom Contributors. All Rights Reserved.
 Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
-Created on:       24/03/01 05:47:28
+Created on:       24/03/01 06:26:48
 Executable Image: build/kernel.bin
 creating a RAW Binary Image executable
 
@@ -13,7 +13,7 @@ creating a RAW Binary Image executable
 Group                           Address              Size
 =====                           =======              ====
 
-DGROUP                          000007ac             00000180
+DGROUP                          000007ae             00000180
 
 
 
@@ -25,10 +25,10 @@ Segment                Class          Group          Address         Size
 =======                =====          =====          =======         ====
 
 _ENTRY                 CODE           AUTO           00000000        0000001d
-_TEXT                  CODE           AUTO           0000001d        0000078f
-CONST                  DATA           DGROUP         000007ac        0000016d
-CONST2                 DATA           DGROUP         0000091a        00000011
-_DATA                  DATA           DGROUP         0000092c        00000000
+_TEXT                  CODE           AUTO           0000001d        00000790
+CONST                  DATA           DGROUP         000007ae        0000016d
+CONST2                 DATA           DGROUP         0000091c        00000011
+_DATA                  DATA           DGROUP         0000092e        00000000
 
 
                         +----------------+
@@ -58,21 +58,21 @@ Module: build/kernel/asm/input.obj(src/libraries/stdio/input.asm)
 0000022a       _x86_Read_Keypress
 Module: build/kernel/c/kernel.obj(/home/debian/BAPOS/src/kernel/kernel.c)
 00000238       _cstart_
-000002b9       _clear_screen_
-000002bc       _putc_
+000002ba       _clear_screen_
+000002bd       _putc_
 Module: build/kernel/c/stdio.obj(/home/debian/BAPOS/src/libraries/stdio/stdio.c)
-000002c9       read_key_
-000002e8       clear_screen_
-000002f0       putc_
-00000301+      puts_
-00000312+      puts_f_
-00000331       _printf
-00000463+      printf_number_
-0000091a+      _possibleChars
+000002ca       read_key_
+000002e9       clear_screen_
+000002f1       putc_
+00000302+      puts_
+00000313+      puts_f_
+00000332       _printf
+00000464+      printf_number_
+0000091c+      _possibleChars
 Module: build/kernel/c/fat12_read.obj(/home/debian/BAPOS/src/libraries/fat12/fat12_read.c)
-000005f8+      fat12_find_
-000006df+      fat12_read_
-00000768       run_program_
+000005f9+      fat12_find_
+000006e0+      fat12_read_
+00000769       run_program_
 
 
                         +---------------------+
@@ -98,20 +98,20 @@ src/libraries/disk/asmDisk.asm
 src/libraries/stdio/input.asm
                 _TEXT                 CODE           0000022a         0000000e
 /home/debian/BAPOS/src/kernel/kernel.c
-                _TEXT                 CODE           00000238         00000091
-                CONST                 DATA           000007ac         00000079
-                CONST2                DATA           0000091a         00000000
-                _DATA                 DATA           0000092c         00000000
+                _TEXT                 CODE           00000238         00000092
+                CONST                 DATA           000007ae         00000079
+                CONST2                DATA           0000091c         00000000
+                _DATA                 DATA           0000092e         00000000
 /home/debian/BAPOS/src/libraries/stdio/stdio.c
-                _TEXT                 CODE           000002c9         0000032f
-                CONST                 DATA           00000826         00000000
-                CONST2                DATA           0000091a         00000011
-                _DATA                 DATA           0000092c         00000000
+                _TEXT                 CODE           000002ca         0000032f
+                CONST                 DATA           00000828         00000000
+                CONST2                DATA           0000091c         00000011
+                _DATA                 DATA           0000092e         00000000
 /home/debian/BAPOS/src/libraries/fat12/fat12_read.c
-                _TEXT                 CODE           000005f8         000001b4
-                CONST                 DATA           00000826         000000f3
-                CONST2                DATA           0000092c         00000000
-                _DATA                 DATA           0000092c         00000000
+                _TEXT                 CODE           000005f9         000001b4
+                CONST                 DATA           00000828         000000f3
+                CONST2                DATA           0000092e         00000000
+                _DATA                 DATA           0000092e         00000000
 Warning! W1014: stack segment not found
 
 
@@ -120,6 +120,6 @@ Warning! W1014: stack segment not found
                         +-----------------------+
 
 Stack size:  0200 (512.)
-Memory size:  092c (2348.)
+Memory size:  092e (2350.)
 Entry point address: 00000008
 Link time: 00:00.00

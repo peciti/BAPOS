@@ -1,11 +1,11 @@
 %define endl 0x0d, 0x0a
-[org 0x00]
+[org 0x200]
 [bits 16]
 
 global entry
 
 entry:
-	jmp 0x00:start
+	jmp start
 
 start:
 	cli
@@ -20,7 +20,7 @@ start:
 	int 0x10
 	xor bx, bx
 
-	jmp 0x00:main
+	jmp main
 
 main:
 	mov si, hello_msg
