@@ -1,5 +1,5 @@
 %define endl 0x0d, 0x0a
-[org 0x200]
+[org 0x0]
 [bits 16]
 
 global entry
@@ -38,9 +38,10 @@ print:
 	jmp print
 
 .done:
-	ret
+	retn
 
 end:
+	
 	retf
 
 hello_msg: db 'Hello World!', endl, 0

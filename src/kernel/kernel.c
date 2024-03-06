@@ -28,7 +28,7 @@ void _cdecl cstart_(){
 			}
 			if(c == '`')
 			{
-				run_program("HELLO   BIN", 0x1000, 0x200);
+				run_program("HELLO   BIN", 0x1000, 0x0);
 			}
 		}
 	}
