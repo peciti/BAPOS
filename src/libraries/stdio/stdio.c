@@ -31,6 +31,28 @@ void puts_f(const char far* s){
 		s++;
 	}
 }
+uint16_t strlen(const char* str){
+	char* s = str;
+	uint16_t count = 0;
+	while(s)
+	{
+		count++;
+		s++;
+	}
+	return count;
+}
+
+char * strspl(const char* str, const char* del){
+	char* s = str;
+	while(s)
+	{
+		if(*s == *del)
+		{
+			*s = 0;
+			
+		}
+	}
+}
 
 void _cdecl printf(const char* fmt, ...){
 	int* argp = (int*) &fmt;
@@ -48,7 +70,7 @@ void _cdecl printf(const char* fmt, ...){
 			}else{
 				putc(*fmt);
 			}
-			
+
 			break;
 		case PRINTF_STATE_LENGTH:
 			if (*fmt == 'h'){
@@ -131,7 +153,7 @@ void _cdecl printf(const char* fmt, ...){
 		length = PRINTF_LENGTH_START;
 		radix = 10;
 		sign = false;
-		break;	
+		break;
 		}
 		fmt++;
 	}
@@ -187,7 +209,7 @@ int* printf_number(int* argp, int length, bool sign, int radix){
 			}
 			argp += 4;
 			break;
-	}	
+	}
 
 	do{
 		uint32_t rem;

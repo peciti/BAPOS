@@ -6,7 +6,9 @@
 
 void _cdecl cstart_(){
 	uint8_t error;
-	char c;
+	uint16_t cmd_lgt;
+	char current_directory[11];
+	char c[200];
 
 	x86_Disk_Reset(0, error);
 
@@ -16,25 +18,52 @@ void _cdecl cstart_(){
 	{
 		printf("%nPress any key to continue...");
 		c = read_key();
-		while(1){
-			c = read_key();
-			putc(c);
-
-			if(c == 17){
-				x86_Shutdown();
-			}
-			if(c == 13){
-				clear_screen();
-			}
-			if(c == '`')
-			{
-				run_program("HELLO   BIN", 0x1000, 0x0);
-			}
-		}
+		command_interperter();
 	}
 	else
 	{
 		printf("%nPress any key to reboot...");
+	}
+}
+
+void command_interperter(){
+	command_beginning:
+	printf("\%s>", current_directory)
+	while(1){
+		c[cmd_lgt] = read_key();
+		putc(c[cmd_lgt]);
+
+		if(c[cmd_lgt] == 13){
+			printf("%n");
+			find_command();
+			goto command_beginning;
+		}
+		cmd_lgt++;
+		if (cmd_lgt > 198)
+		{
+			printf("You've reached the command word limit %n");
+		}
+	}
+}
+
+void find_command(){
+	char* cmd;
+	char* arg;
+}
+
+void execute_command(const char cmd[], const char arg[])
+{
+	switch(cmd){
+	case "ls":
+	fat12_directory_list();
+	break;
+
+	case "ec":
+	break;
+
+	default:
+	printf("'%s' is not a valid command!%n", cmd);
+	break;
 	}
 }
 
