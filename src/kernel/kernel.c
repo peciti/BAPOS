@@ -53,21 +53,19 @@ void find_command(){
 
 	arg = strspl(c, ' ');
 	cmd = c[0];
+	execute_command(cmd, arg);
 }
 
 void execute_command(const char cmd[], const char arg[])
 {
 	printf("%s %s %n", cmd, arg);
-	switch(cmd){
-	case 'ls':
-	break;
-
-	case 'ec':
-	break;
-
-	default:
-	printf("'%s' is not a valid command!%n", cmd);
-	break;
+	if(strcmp(cmd, "ls")){
+	}
+	if(strcmp(cmd, "ec")){
+		printf("%s%n", arg);
+	}
+	else{
+		printf("'%s' is not a valid command%n", cmd);
 	}
 }
 

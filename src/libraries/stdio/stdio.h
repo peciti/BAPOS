@@ -7,6 +7,7 @@ void _cdecl printf(const char* fmt, ...);
 void puts_f(const char far* s);
 uint16_t strlen(const char* str);
 char* strspl(const char* str, const char* del);
+bool strcmp(const char str1[], const char str2[]);
 int * printf_number(int*, int, bool, int);
 void clear_screen();
 char read_key();

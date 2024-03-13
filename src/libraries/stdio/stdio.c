@@ -54,6 +54,24 @@ char* strspl(const char* str, const char* del){
 		}
 	}
 }
+// if flag is 0 - no errors
+// if flag is 1 - strings are not the same
+bool strcmp(const char str1[], const char str2[]){
+	uint16_t i = 0;
+	bool flag;
+	if(strlen(str1) != strlen(str2)){
+		flag = 1;
+		return flag;
+	}
+	while(1){
+		if(!(str1[i] == str2[i])){
+			flag = 1;
+			break;
+		}
+		i++;
+	}
+	return flag;
+}
 
 void _cdecl printf(const char* fmt, ...){
 	int* argp = (int*) &fmt;
