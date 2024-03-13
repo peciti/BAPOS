@@ -34,10 +34,17 @@ void command_interperter(){
 		c[cmd_lgt] = read_key();
 		putc(c[cmd_lgt]);
 
+		// Enter
 		if(c[cmd_lgt] == 13){
 			printf("%n");
 			find_command();
 			goto command_beginning;
+		}
+		// Backspace
+		if(c[cmd_lgt] == 8){
+			cmd_lgt = cmd_lgt - 1;
+			c[cmd_lgt] = 0;
+			putc(c[cmd_lgt]);
 		}
 		cmd_lgt++;
 		if (cmd_lgt > 198)
@@ -58,6 +65,7 @@ void find_command(){
 
 void execute_command(const char cmd[], const char arg[])
 {
+	// will remove this later
 	printf("%s %s %n", cmd, arg);
 	if(strcmp(cmd, "ls")){
 	}
