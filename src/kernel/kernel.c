@@ -67,9 +67,17 @@ void execute_command(const char cmd[], const char arg[])
 {
 	// will remove this later
 	printf("%s %s %n", cmd, arg);
+
+	//show contents of the current directory
 	if(strcmp(cmd, "ls")){
 	}
-	if(strcmp(cmd, "ec")){
+
+	// shutdown system
+	else if(strcmp(cmd, "qu")){
+		x86_Shutdown();
+	}
+	// echo back strings
+	else if(strcmp(cmd, "ec")){
 		printf("%s%n", arg);
 	}
 	else{
