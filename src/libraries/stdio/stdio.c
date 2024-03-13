@@ -54,18 +54,18 @@ char* strspl(const char* str, const char* del){
 		}
 	}
 }
-// if flag is 0 - no errors
-// if flag is 1 - strings are not the same
+// if flag is 1 - no errors
+// if flag is 0 - strings are not the same
 bool strcmp(const char str1[], const char str2[]){
 	uint16_t i = 0;
-	bool flag;
+	bool flag = 1;
 	if(strlen(str1) != strlen(str2)){
-		flag = 1;
+		flag = 0;
 		return flag;
 	}
 	while(1){
 		if(!(str1[i] == str2[i])){
-			flag = 1;
+			flag = 0;
 			break;
 		}
 		i++;
