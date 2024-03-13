@@ -42,11 +42,17 @@ void command_interperter(){
 		}
 		// Backspace
 		if(c[cmd_lgt] == 8){
-			cmd_lgt = cmd_lgt - 1;
-			c[cmd_lgt] = 0;
-			putc(c[cmd_lgt]);
+			if(cmd_lgt > 0)
+			{
+				cmd_lgt = cmd_lgt - 1;
+				c[cmd_lgt] = 0;
+				putc(c[cmd_lgt]);
+			}
 		}
-		cmd_lgt++;
+		else{
+			cmd_lgt++;
+		}
+
 		if (cmd_lgt > 198)
 		{
 			printf("You've reached the command word limit %n");
