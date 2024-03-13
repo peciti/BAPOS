@@ -4,11 +4,12 @@
 #include "../libraries/power/power_options.h"
 #include "../libraries/fat12/fat12_read.h"
 
+uint16_t cmd_lgt;
+char current_directory[11];
+char c[200];
+
 void _cdecl cstart_(){
 	uint8_t error;
-	uint16_t cmd_lgt;
-	char current_directory[11];
-	char c[200];
 
 	x86_Disk_Reset(0, error);
 
@@ -17,7 +18,7 @@ void _cdecl cstart_(){
 	if (error == 0)
 	{
 		printf("%nPress any key to continue...");
-		c = read_key();
+		read_key();
 		command_interperter();
 	}
 	else
@@ -28,7 +29,7 @@ void _cdecl cstart_(){
 
 void command_interperter(){
 	command_beginning:
-	printf("\%s>", current_directory)
+	printf("\%s>", current_directory);
 	while(1){
 		c[cmd_lgt] = read_key();
 		putc(c[cmd_lgt]);
@@ -49,16 +50,19 @@ void command_interperter(){
 void find_command(){
 	char* cmd;
 	char* arg;
+
+	arg = strspl(c, ' ');
+	cmd = c[0];
 }
 
 void execute_command(const char cmd[], const char arg[])
 {
+	printf("%s %s %n", cmd, arg);
 	switch(cmd){
-	case "ls":
-	fat12_directory_list();
+	case 'ls':
 	break;
 
-	case "ec":
+	case 'ec':
 	break;
 
 	default:

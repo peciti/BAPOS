@@ -41,7 +41,7 @@ print:
 	retn
 
 end:
-	
+
 	retf
 
 hello_msg: db 'Hello World!', endl, 0

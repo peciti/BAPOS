@@ -42,14 +42,15 @@ uint16_t strlen(const char* str){
 	return count;
 }
 
-char * strspl(const char* str, const char* del){
+char* strspl(const char* str, const char* del){
 	char* s = str;
 	while(s)
 	{
 		if(*s == *del)
 		{
 			*s = 0;
-			
+			s++;
+			return s;
 		}
 	}
 }
