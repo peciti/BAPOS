@@ -17,13 +17,13 @@ void _cdecl cstart_(){
 	printf("Disk Error: %i", error);
 	if (error == 0)
 	{
-		printf("%nPress any key to continue...");
+		printf("%nPress any key to continue...%n");
 		read_key();
 		command_interperter();
 	}
 	else
 	{
-		printf("%nPress any key to reboot...");
+		printf("%nPress any key to reboot...%n");
 	}
 }
 
@@ -66,29 +66,35 @@ void find_command(){
 
 	arg = strspl(c, " ");
 	cmd = c;
-	printf("command: %s argument: %s%n", cmd, arg);
 	execute_command(cmd, arg);
 }
 
-void execute_command(const char cmd[], const char arg[])
+void execute_command(char cmd[], char arg[])
 {
-	// will remove this later
-	printf("%s %s %n", cmd, arg);
-
+	int i = 0;
 	//show contents of the current directory
 	if(strcmp(cmd, "ls")){
 	}
 
 	// shutdown system
 	else if(strcmp(cmd, "shutdown")){
+		clear_screen();
 		x86_Shutdown();
 	}
 	// echo back strings
 	else if(strcmp(cmd, "echo")){
 		printf("%s%n", arg);
 	}
+	else if(strcmp(cmd, "clear")){
+		clear_screen();
+	}
 	else{
 		printf("'%s' is not a valid command%n", cmd);
+	}
+	cmd_lgt = 0;
+	for(i = 0; i < 200; i++)
+	{
+		c[i] = 0;
 	}
 }
 

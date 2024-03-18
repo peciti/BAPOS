@@ -6,7 +6,7 @@ src/libraries/stdio/stdio.c(7): Note! I2004: target conversion type is 'char *'
 src/libraries/stdio/stdio.c(35): Warning! E1178: Type qualifier mismatch
 src/libraries/stdio/stdio.c(35): Note! I2003: source conversion type is 'char const *'
 src/libraries/stdio/stdio.c(35): Note! I2004: target conversion type is 'char *'
-src/libraries/stdio/stdio.c(47): Warning! E1178: Type qualifier mismatch
-src/libraries/stdio/stdio.c(47): Note! I2003: source conversion type is 'char const *'
-src/libraries/stdio/stdio.c(47): Note! I2004: target conversion type is 'char *'
-src/libraries/stdio/stdio.c(60): Warning! W107: Missing return value for function 'strspl'
+src/libraries/stdio/stdio.c(46): Warning! E1178: Type qualifier mismatch
+src/libraries/stdio/stdio.c(46): Note! I2003: source conversion type is 'char const *'
+src/libraries/stdio/stdio.c(46): Note! I2004: target conversion type is 'char *'
+src/libraries/stdio/stdio.c(57): Warning! W107: Missing return value for function 'strspl'
