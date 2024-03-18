@@ -39,6 +39,7 @@ uint16_t strlen(const char* str){
 		count++;
 		s++;
 	}
+	printf("String length: %i%n", count);
 	return count;
 }
 
@@ -46,12 +47,15 @@ char* strspl(const char* str, const char* del){
 	char* s = str;
 	while(s)
 	{
+		printf("char: %c%n", *s);
 		if(*s == *del)
 		{
+			printf("Splitting string now%n");
 			*s = 0;
 			s++;
 			return s;
 		}
+		s++;
 	}
 }
 // if flag is 1 - no errors
@@ -63,7 +67,13 @@ bool strcmp(const char str1[], const char str2[]){
 		flag = 0;
 		return flag;
 	}
-	while(1){
+	for(i = 0; i<=strlen(str1); i++){
+		printf("char: %c char2: %c count: %i%n", str1[i], str2[i], i);
+		if(i == strlen(str1)){
+			flag = 1;
+			break;
+		}
+
 		if(!(str1[i] == str2[i])){
 			flag = 0;
 			break;

@@ -1,15 +1,7 @@
-src/kernel/kernel.c(14): Warning! W200: 'error' has been referenced but never assigned a value
-src/kernel/kernel.c(14): Note! I2002: 'x86_Disk_Reset' defined in: src/kernel/../libraries/disk/asmDisk.h(4)
 src/kernel/kernel.c(14): Warning! W102: Parameter 2: Type mismatch (warning)
 src/kernel/kernel.c(14): Note! I2003: source conversion type is 'unsigned char'
 src/kernel/kernel.c(14): Note! I2004: target conversion type is 'unsigned char *'
+src/kernel/kernel.c(14): Note! I2002: 'x86_Disk_Reset' defined in: src/kernel/../libraries/disk/asmDisk.h(4)
 src/kernel/kernel.c(22): Warning! W131: No prototype found for function 'command_interperter'
-src/kernel/kernel.c(39): Warning! W131: No prototype found for function 'find_command'
-src/kernel/kernel.c(54): Warning! W101: Parameter 2: Non-portable pointer conversion
-src/kernel/kernel.c(54): Note! I2003: source conversion type is 'int'
-src/kernel/kernel.c(54): Note! I2004: target conversion type is 'char const *'
-src/kernel/kernel.c(54): Note! I2002: 'strspl' defined in: src/kernel/../libraries/stdio/stdio.h(9)
-src/kernel/kernel.c(55): Warning! W102: Type mismatch (warning)
-src/kernel/kernel.c(55): Note! I2003: source conversion type is 'char'
-src/kernel/kernel.c(55): Note! I2004: target conversion type is 'char *'
-src/kernel/kernel.c(61): Error! E1078: Invalid type for switch expression
+src/kernel/kernel.c(40): Warning! W131: No prototype found for function 'find_command'
+src/kernel/kernel.c(70): Warning! W131: No prototype found for function 'execute_command'

@@ -36,7 +36,7 @@ _x86_Disk_Reset:
 	int 0x13
 	jc reset_error
 
-	mov cx,0
+	xor cx, cx
 	mov bx, [bp+6]
 	mov [bx], cx
 	jmp end_reset

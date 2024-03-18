@@ -4,17 +4,17 @@
 #include "../libraries/power/power_options.h"
 #include "../libraries/fat12/fat12_read.h"
 
-uint16_t cmd_lgt;
-char current_directory[11];
+uint16_t cmd_lgt = 0;
+char current_directory[] = "           ";
 char c[200];
 
 void _cdecl cstart_(){
-	uint8_t error;
+	uint8_t error = 0;
 
 	x86_Disk_Reset(0, error);
 
-	printf("Kernel Loaded! Welcome to BAPOS");
-	printf("%nDisk Error: %i", error);
+	printf("Welcome to BAPOS%n");
+	printf("Disk Error: %i", error);
 	if (error == 0)
 	{
 		printf("%nPress any key to continue...");
@@ -64,8 +64,9 @@ void find_command(){
 	char* cmd;
 	char* arg;
 
-	arg = strspl(c, ' ');
-	cmd = c[0];
+	arg = strspl(c, " ");
+	cmd = c;
+	printf("command: %s argument: %s%n", cmd, arg);
 	execute_command(cmd, arg);
 }
 
