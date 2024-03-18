@@ -34,7 +34,7 @@ void puts_f(const char far* s){
 uint16_t strlen(const char* str){
 	char* s = str;
 	uint16_t count = 0;
-	while(s)
+	while(*s)
 	{
 		count++;
 		s++;
