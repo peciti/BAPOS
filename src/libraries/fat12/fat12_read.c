@@ -23,19 +23,19 @@ uint16_t fat12_find(char filename[])
 	{
 		for(t = 0; t <= 11; t++)
 		{
-			printf("filename_char: %c, directory_char: %c %n", filename[t], *directorycopy);
+			printf("filename_char: %c, directory_char: %c%n", filename[t], *directorycopy);
 			if(t == 11)
 			{
-				printf("directory found! %n");
+				printf("directory found!%n");
 				directory = directory + 26;
 				sector = *directory;
-				printf("sector: %x %n", sector);
+				printf("sector: %x%n", sector);
 				read_key();
 				return sector;
 			}
 			if(filename[t] == *directorycopy)
 			{
-				printf("Matching char: %c %n", *directorycopy);
+				printf("Matching char: %c%n", *directorycopy);
 				read_key();
 				directorycopy++;
 			}
@@ -43,9 +43,9 @@ uint16_t fat12_find(char filename[])
 			break;
 			}
 		}
-		printf("Moving to next directory %n");
+		printf("Moving to next directory%n");
 		directory = directory + 32;
-		printf("Next directory: %x %n", directory);
+		printf("Next directory: %x%n", directory);
 		read_key();
 		directorycopy = directory;
 	}
