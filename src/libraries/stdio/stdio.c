@@ -45,7 +45,7 @@ uint16_t strlen(const char* str){
 
 char* strspl(const char* str, const char* del){
 	char* s = str;
-	while(s)
+	while(*s)
 	{
 		printf("char: %c%n", *s);
 		if(*s == *del)
