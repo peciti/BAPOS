@@ -5,7 +5,7 @@
 #include "../libraries/fat12/fat12_read.h"
 
 uint16_t cmd_lgt = 0;
-char current_directory[] = "           ";
+char current_directory[8];
 char c[200];
 
 void _cdecl cstart_(){
@@ -29,7 +29,7 @@ void _cdecl cstart_(){
 
 void command_interperter(){
 	command_beginning:
-	printf("\%s>", current_directory);
+	printf("%s\>", current_directory);
 	while(1){
 		c[cmd_lgt] = read_key();
 		putc(c[cmd_lgt]);
@@ -80,11 +80,11 @@ void execute_command(const char cmd[], const char arg[])
 	}
 
 	// shutdown system
-	else if(strcmp(cmd, "qu")){
+	else if(strcmp(cmd, "shutdown")){
 		x86_Shutdown();
 	}
 	// echo back strings
-	else if(strcmp(cmd, "ec")){
+	else if(strcmp(cmd, "echo")){
 		printf("%s%n", arg);
 	}
 	else{
