@@ -81,15 +81,37 @@ void execute_command(char cmd[], char arg[])
 		clear_screen();
 		x86_Shutdown();
 	}
+
 	// echo back strings
 	else if(strcmp(cmd, "echo")){
 		printf("%s%n", arg);
 	}
+
 	else if(strcmp(cmd, "clear")){
 		clear_screen();
 	}
+
+	else if(strcmp(cmd, "help")){
+
+		if(*arg == 13){
+			printf("echo%nclear%nshutdown%nls%n");
+		}
+		else if(strcmp(arg, "echo")){
+			printf("echo <string> - echoes back the string%n");
+		}
+		else if(strcmp(arg, "shutdown")){
+			printf("shutdown - turns off the PC%n");
+		}
+		else if(strcmp(arg, "ls")){
+			printf("ls - lists contents of current directory%n");
+		}
+		else{
+			printf("'%s' is not valid%n", arg);
+		}
+	}
+
 	else{
-		printf("'%s' is not a valid command%n", cmd);
+		printf("'%s' is not a valid command%n type 'help' to see available commands%n", cmd);
 	}
 	cmd_lgt = 0;
 	for(i = 0; i < 200; i++)
