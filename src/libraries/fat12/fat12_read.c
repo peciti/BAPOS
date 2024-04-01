@@ -89,12 +89,6 @@ void fat12_read(uint16_t sector, uint16_t load_segment, uint16_t load_offset)
 		printf("File Loaded press any key to continue...%n");
 		read_key();
 	}
-
-
-
-
-
-
 }
 
 void run_program(char* filename, uint16_t load_segment, uint16_t load_offset)

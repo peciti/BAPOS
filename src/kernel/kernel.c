@@ -5,8 +5,8 @@
 #include "../libraries/fat12/fat12_read.h"
 
 uint16_t cmd_lgt = 0;
-char current_directory[8];
-char c[200];
+char current_directory[11];
+char c[100];
 
 void _cdecl cstart_(){
 	uint8_t error = 0;
@@ -29,7 +29,8 @@ void _cdecl cstart_(){
 
 void command_interperter(){
 	command_beginning:
-	printf("%s\>", current_directory);
+	printf("%s", current_directory);
+	printf("\>");
 	while(1){
 		c[cmd_lgt] = read_key();
 		putc(c[cmd_lgt]);
@@ -53,7 +54,7 @@ void command_interperter(){
 			cmd_lgt++;
 		}
 
-		if (cmd_lgt > 198)
+		if (cmd_lgt > 98)
 		{
 			printf("You've reached the command word limit %n");
 		}
@@ -72,8 +73,16 @@ void find_command(){
 void execute_command(char cmd[], char arg[])
 {
 	int i = 0;
-	//show contents of the current directory
-	if(strcmp(cmd, "ls")){
+	// opens directory
+	if(strcmp(cmd, "cd")){
+		for (i = 0; i < 11; i++)
+		{
+			current_directory[i] = arg[i];
+		}
+	}
+	// shows contents of the current directory
+	else if(strcmp(cmd, "ls")){
+		
 	}
 
 	// shutdown system
@@ -94,19 +103,7 @@ void execute_command(char cmd[], char arg[])
 	else if(strcmp(cmd, "help")){
 
 		if(*arg == 13){
-			printf("echo%nclear%nshutdown%nls%n");
-		}
-		else if(strcmp(arg, "echo")){
-			printf("echo <string> - echoes back the string%n");
-		}
-		else if(strcmp(arg, "shutdown")){
-			printf("shutdown - turns off the PC%n");
-		}
-		else if(strcmp(arg, "ls")){
-			printf("ls - lists contents of current directory%n");
-		}
-		else{
-			printf("'%s' is not valid%n", arg);
+			printf("echo%nclear%nshutdown%ncd%nls%n");
 		}
 	}
 

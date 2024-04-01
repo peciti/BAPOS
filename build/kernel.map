@@ -1,7 +1,7 @@
 Open Watcom Linker Version 2.0 beta Feb 16 2024 01:42:42 (32-bit)
 Copyright (c) 2002-2024 The Open Watcom Contributors. All Rights Reserved.
 Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
-Created on:       24/03/19 02:44:10
+Created on:       24/03/31 21:21:38
 Executable Image: build/kernel.bin
 creating a RAW Binary Image executable
 
@@ -13,7 +13,7 @@ creating a RAW Binary Image executable
 Group                           Address              Size
 =====                           =======              ====
 
-DGROUP                          00000932             0000037e
+DGROUP                          0000091c             0000029f
 
 
 
@@ -25,11 +25,11 @@ Segment                Class          Group          Address         Size
 =======                =====          =====          =======         ====
 
 _ENTRY                 CODE           AUTO           00000000        0000001d
-_TEXT                  CODE           AUTO           0000001d        00000914
-CONST                  DATA           DGROUP         00000932        00000299
-CONST2                 DATA           DGROUP         00000bcc        00000011
-_DATA                  DATA           DGROUP         00000bde        00000002
-_BSS                   BSS            DGROUP         00000be0        000000d0
+_TEXT                  CODE           AUTO           0000001d        000008fe
+CONST                  DATA           DGROUP         0000091c        0000021b
+CONST2                 DATA           DGROUP         00000b38        00000011
+_DATA                  DATA           DGROUP         00000b4a        00000002
+_BSS                   BSS            DGROUP         00000b4c        0000006f
 
 
                         +----------------+
@@ -60,29 +60,29 @@ Module: build/kernel/asm/input.obj(src/libraries/stdio/input.asm)
 Module: build/kernel/c/kernel.obj(/home/user/BAPOS/src/kernel/kernel.c)
 00000237       _cstart_
 00000265*      command_interperter_
-000002dc+      find_command_
-000002f0+      execute_command_
-000003b2       _clear_screen_
-000003b5       _putc_
-00000bde+      _cmd_lgt
-00000be0+      _current_directory
-00000be8+      _c
+000002de+      find_command_
+000002f2+      execute_command_
+0000039c       _clear_screen_
+0000039f       _putc_
+00000b4a+      _cmd_lgt
+00000b4c+      _c
+00000bb0+      _current_directory
 Module: build/kernel/c/stdio.obj(/home/user/BAPOS/src/libraries/stdio/stdio.c)
-000003c2       read_key_
-000003e1       clear_screen_
-000003e9       putc_
-000003fa+      puts_
-0000040b+      puts_f_
-0000041f+      strlen_
-0000042d       strspl_
-0000044d       strcmp_
-000004b6       _printf
-000005e8+      printf_number_
-00000bcc+      _possibleChars
+000003ac       read_key_
+000003cb       clear_screen_
+000003d3       putc_
+000003e4+      puts_
+000003f5+      puts_f_
+00000409+      strlen_
+00000417       strspl_
+00000437       strcmp_
+000004a0       _printf
+000005d2+      printf_number_
+00000b38+      _possibleChars
 Module: build/kernel/c/fat12_read.obj(/home/user/BAPOS/src/libraries/fat12/fat12_read.c)
-0000077d+      fat12_find_
-00000864+      fat12_read_
-000008ed*      run_program_
+00000767+      fat12_find_
+0000084e+      fat12_read_
+000008d7*      run_program_
 
 
                         +---------------------+
@@ -108,21 +108,21 @@ src/libraries/disk/asmDisk.asm
 src/libraries/stdio/input.asm
                 _TEXT                 CODE           00000229         0000000e
 /home/user/BAPOS/src/kernel/kernel.c
-                _TEXT                 CODE           00000237         0000018b
-                CONST                 DATA           00000932         0000019d
-                CONST2                DATA           00000bcc         00000000
-                _DATA                 DATA           00000bde         00000002
-                _BSS                  BSS            00000be0         000000d0
+                _TEXT                 CODE           00000237         00000175
+                CONST                 DATA           0000091c         0000011f
+                CONST2                DATA           00000b38         00000000
+                _DATA                 DATA           00000b4a         00000002
+                _BSS                  BSS            00000b4c         0000006f
 /home/user/BAPOS/src/libraries/stdio/stdio.c
-                _TEXT                 CODE           000003c2         000003bb
-                CONST                 DATA           00000ad0         00000000
-                CONST2                DATA           00000bcc         00000011
-                _DATA                 DATA           00000be0         00000000
+                _TEXT                 CODE           000003ac         000003bb
+                CONST                 DATA           00000a3c         00000000
+                CONST2                DATA           00000b38         00000011
+                _DATA                 DATA           00000b4c         00000000
 /home/user/BAPOS/src/libraries/fat12/fat12_read.c
-                _TEXT                 CODE           0000077d         000001b4
-                CONST                 DATA           00000ad0         000000fb
-                CONST2                DATA           00000bde         00000000
-                _DATA                 DATA           00000be0         00000000
+                _TEXT                 CODE           00000767         000001b4
+                CONST                 DATA           00000a3c         000000fb
+                CONST2                DATA           00000b4a         00000000
+                _DATA                 DATA           00000b4c         00000000
 Warning! W1014: stack segment not found
 
 
@@ -131,6 +131,6 @@ Warning! W1014: stack segment not found
                         +-----------------------+
 
 Stack size:  0200 (512.)
-Memory size:  0cb0 (3248.)
+Memory size:  0bbb (3003.)
 Entry point address: 00000008
 Link time: 00:00.00
