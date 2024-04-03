@@ -1,0 +1,1 @@
+src/libraries/fat12/fat12.c(99): Warning! W202: Symbol 'FATptr' has been defined, but not referenced

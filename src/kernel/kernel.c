@@ -32,7 +32,7 @@ void command_interperter(){
 	printf("%s\>", current_directory);
 	while(1){
 		c[cmd_len] = read_key();
-		putc(c[cmd_lgt]);
+		putc(c[cmd_len]);
 
 		// Enter
 		if(c[cmd_len] == 13){
@@ -99,7 +99,7 @@ void execute_command(char cmd[], char arg[])
 		clear_screen();
 	}
 	else if(strcmp(cmd, "run")){
-		run_program(arg);
+		run_program(arg, 0x1000, 0x0);
 	}
 
 	else if(strcmp(cmd, "help")){
