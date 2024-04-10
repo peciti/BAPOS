@@ -5,6 +5,7 @@
 #include "../libraries/fat12/fat12.h"
 
 uint16_t cmd_len = 0;
+uint16_t page_num = 0;
 char current_directory[11];
 char c[100];
 
@@ -29,7 +30,7 @@ void _cdecl cstart_(){
 
 void command_interperter(){
 	command_beginning:
-	printf("%s\>", current_directory);
+	printf("%s/>", current_directory);
 	while(1){
 		c[cmd_len] = read_key();
 		putc(c[cmd_len]);
@@ -55,7 +56,7 @@ void command_interperter(){
 
 		if (cmd_len > 98)
 		{
-			printf("You've reached the command word limit %n");
+			printf("%nYou've reached the command word limit %n");
 		}
 	}
 }

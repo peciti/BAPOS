@@ -23,8 +23,10 @@ void display_directory(char current_directory[])
 		for(i = 0; i < 224; i++){
 		
 			for(t = 0; t <= 32; t++){
-			
-				printf("%c", *directorycopy);
+				if(!directorycopy != 0)
+				{
+					printf("%c", *directorycopy);	
+				}
 				directorycopy++;
 			}
 			
