@@ -6,8 +6,9 @@
 
 uint16_t cmd_len = 0;
 uint16_t page_num = 0;
-char current_directory[8];
+char current_directory[9];
 char c[100];
+char* directory_char;
 
 void _cdecl cstart_(){
 	uint8_t error = 0;
@@ -30,7 +31,19 @@ void _cdecl cstart_(){
 
 void command_interperter(){
 	command_beginning:
-	printf("%s/>", current_directory);
+	directory_char = current_directory;
+	for(uint8_t i = 0; i<9; i++){
+		if(!*directory_char != 0)
+		{
+			directory_char++;
+		}
+		else
+		{
+			*directory_char = '#';
+			break;
+		}
+	}
+	printf("%s", current_directory);
 	while(1){
 		c[cmd_len] = read_key();
 		putc(c[cmd_len]);
