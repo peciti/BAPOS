@@ -6,7 +6,7 @@
 
 uint16_t cmd_len = 0;
 uint16_t page_num = 0;
-char current_directory[11];
+char current_directory[8];
 char c[100];
 
 void _cdecl cstart_(){

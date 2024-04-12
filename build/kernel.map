@@ -1,7 +1,7 @@
-Open Watcom Linker Version 2.0 beta Feb 16 2024 01:42:42 (32-bit)
+Open Watcom Linker Version 2.0 beta Jan 12 2024 01:50:46 (32-bit)
 Copyright (c) 2002-2024 The Open Watcom Contributors. All Rights Reserved.
 Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
-Created on:       24/04/02 21:33:15
+Created on:       24/04/12 06:07:51
 Executable Image: build/kernel.bin
 creating a RAW Binary Image executable
 
@@ -13,7 +13,7 @@ creating a RAW Binary Image executable
 Group                           Address              Size
 =====                           =======              ====
 
-DGROUP                          00000930             00000237
+DGROUP                          00000934             00000238
 
 
 
@@ -25,11 +25,11 @@ Segment                Class          Group          Address         Size
 =======                =====          =====          =======         ====
 
 _ENTRY                 CODE           AUTO           00000000        0000001d
-_TEXT                  CODE           AUTO           0000001d        00000913
-CONST                  DATA           DGROUP         00000930        000001b3
-CONST2                 DATA           DGROUP         00000ae4        00000011
-_DATA                  DATA           DGROUP         00000af6        00000002
-_BSS                   BSS            DGROUP         00000af8        0000006f
+_TEXT                  CODE           AUTO           0000001d        00000916
+CONST                  DATA           DGROUP         00000934        000001b5
+CONST2                 DATA           DGROUP         00000aea        00000011
+_DATA                  DATA           DGROUP         00000afc        00000004
+_BSS                   BSS            DGROUP         00000b00        0000006c
 
 
                         +----------------+
@@ -57,17 +57,18 @@ Module: build/kernel/asm/disk.obj(src/libraries/disk/asmDisk.asm)
 000001df       _x86_Disk_Reset
 Module: build/kernel/asm/input.obj(src/libraries/stdio/input.asm)
 00000229       _x86_Read_Keypress
-Module: build/kernel/c/kernel.obj(/home/user/BAPOS/src/kernel/kernel.c)
+Module: build/kernel/c/kernel.obj(/home/debian/BAPOS/src/kernel/kernel.c)
 00000237       _cstart_
 00000265*      command_interperter_
 000002db+      find_command_
 000002ef+      execute_command_
 000003b9       _clear_screen_
 000003bc       _putc_
-00000af6+      _cmd_len
-00000af8+      _c
-00000b5c+      _current_directory
-Module: build/kernel/c/stdio.obj(/home/user/BAPOS/src/libraries/stdio/stdio.c)
+00000afc+      _cmd_len
+00000afe*      _page_num
+00000b00+      _current_directory
+00000b08+      _c
+Module: build/kernel/c/stdio.obj(/home/debian/BAPOS/src/libraries/stdio/stdio.c)
 000003c9       read_key_
 000003e8       clear_screen_
 000003f0       putc_
@@ -78,13 +79,13 @@ Module: build/kernel/c/stdio.obj(/home/user/BAPOS/src/libraries/stdio/stdio.c)
 00000454       strcmp_
 000004bd       _printf
 000005ef+      printf_number_
-00000ae4+      _possibleChars
-Module: build/kernel/c/fat12.obj(/home/user/BAPOS/src/libraries/fat12/fat12.c)
+00000aea+      _possibleChars
+Module: build/kernel/c/fat12.obj(/home/debian/BAPOS/src/libraries/fat12/fat12.c)
 00000784+      load_directory_
 0000079e       display_directory_
-00000802+      fat12_find_
-0000085f+      fat12_read_
-000008e8       run_program_
+00000808+      fat12_find_
+00000865+      fat12_read_
+000008eb       run_program_
 
 
                         +---------------------+
@@ -109,22 +110,22 @@ src/libraries/disk/asmDisk.asm
                 _TEXT                 CODE           000001bf         0000006a
 src/libraries/stdio/input.asm
                 _TEXT                 CODE           00000229         0000000e
-/home/user/BAPOS/src/kernel/kernel.c
+/home/debian/BAPOS/src/kernel/kernel.c
                 _TEXT                 CODE           00000237         00000192
-                CONST                 DATA           00000930         00000127
-                CONST2                DATA           00000ae4         00000000
-                _DATA                 DATA           00000af6         00000002
-                _BSS                  BSS            00000af8         0000006f
-/home/user/BAPOS/src/libraries/stdio/stdio.c
+                CONST                 DATA           00000934         0000012a
+                CONST2                DATA           00000aea         00000000
+                _DATA                 DATA           00000afc         00000004
+                _BSS                  BSS            00000b00         0000006c
+/home/debian/BAPOS/src/libraries/stdio/stdio.c
                 _TEXT                 CODE           000003c9         000003bb
-                CONST                 DATA           00000a58         00000000
-                CONST2                DATA           00000ae4         00000011
-                _DATA                 DATA           00000af8         00000000
-/home/user/BAPOS/src/libraries/fat12/fat12.c
-                _TEXT                 CODE           00000784         000001ac
-                CONST                 DATA           00000a58         0000008b
-                CONST2                DATA           00000af6         00000000
-                _DATA                 DATA           00000af8         00000000
+                CONST                 DATA           00000a5e         00000000
+                CONST2                DATA           00000aea         00000011
+                _DATA                 DATA           00000b00         00000000
+/home/debian/BAPOS/src/libraries/fat12/fat12.c
+                _TEXT                 CODE           00000784         000001af
+                CONST                 DATA           00000a5e         0000008b
+                CONST2                DATA           00000afc         00000000
+                _DATA                 DATA           00000b00         00000000
 Warning! W1014: stack segment not found
 
 
@@ -133,6 +134,6 @@ Warning! W1014: stack segment not found
                         +-----------------------+
 
 Stack size:  0200 (512.)
-Memory size:  0b67 (2919.)
+Memory size:  0b6c (2924.)
 Entry point address: 00000008
 Link time: 00:00.00
