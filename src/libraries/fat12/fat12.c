@@ -20,7 +20,7 @@ void display_directory(char current_directory[])
 	load_directory();
 	if(current_directory[0] == 0)
 	{
-		for(i = 0; i < 224; i++){
+		for(i = 0; i < 1; i++){
 		
 			for(t = 0; t <= 32; t++){
 				if(!directorycopy != 0)

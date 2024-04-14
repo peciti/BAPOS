@@ -30,9 +30,10 @@ void _cdecl cstart_(){
 }
 
 void command_interperter(){
+	uint8_t i;
 	command_beginning:
 	directory_char = current_directory;
-	for(uint8_t i = 0; i<9; i++){
+	for(i = 0; i<9; i++){
 		if(!*directory_char != 0)
 		{
 			directory_char++;

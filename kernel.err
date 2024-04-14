@@ -3,33 +3,5 @@ src/kernel/kernel.c(16): Note! I2003: source conversion type is 'unsigned char'
 src/kernel/kernel.c(16): Note! I2004: target conversion type is 'unsigned char *'
 src/kernel/kernel.c(16): Note! I2002: 'x86_Disk_Reset' defined in: src/kernel/../libraries/disk/asmDisk.h(4)
 src/kernel/kernel.c(24): Warning! W131: No prototype found for function 'command_interperter'
-src/kernel/kernel.c(35): Error! E1058: Cannot use typedef 'uint8_t' as a variable
-src/kernel/kernel.c(35): Error! E1009: Expecting ';' but found 'i'
-src/kernel/kernel.c(35): Error! E1011: Symbol 'i' has not been declared
-src/kernel/kernel.c(35): Warning! W111: Meaningless use of an expression
-src/kernel/kernel.c(35): Error! E1009: Expecting ')' but found ';'
-src/kernel/kernel.c(35): Error! E1009: Expecting ';' but found ')'
-src/kernel/kernel.c(35): Error! E1063: Missing operand
-src/kernel/kernel.c(35): Warning! W111: Meaningless use of an expression
-src/kernel/kernel.c(35): Error! E1009: Expecting ';' but found ')'
-src/kernel/kernel.c(35): Error! E1063: Missing operand
-src/kernel/kernel.c(35): Warning! W111: Meaningless use of an expression
-src/kernel/kernel.c(35): Error! E1009: Expecting ';' but found ')'
-src/kernel/kernel.c(35): Error! E1063: Missing operand
-src/kernel/kernel.c(35): Warning! W111: Meaningless use of an expression
-src/kernel/kernel.c(35): Error! E1009: Expecting ';' but found ')'
-src/kernel/kernel.c(35): Error! E1063: Missing operand
-src/kernel/kernel.c(35): Warning! W111: Meaningless use of an expression
-src/kernel/kernel.c(35): Error! E1009: Expecting ';' but found ')'
-src/kernel/kernel.c(35): Error! E1063: Missing operand
-src/kernel/kernel.c(35): Warning! W111: Meaningless use of an expression
-src/kernel/kernel.c(35): Error! E1009: Expecting ';' but found ')'
-src/kernel/kernel.c(35): Error! E1063: Missing operand
-src/kernel/kernel.c(35): Warning! W111: Meaningless use of an expression
-src/kernel/kernel.c(35): Error! E1009: Expecting ';' but found ')'
-src/kernel/kernel.c(35): Error! E1063: Missing operand
-src/kernel/kernel.c(35): Warning! W111: Meaningless use of an expression
-src/kernel/kernel.c(35): Error! E1009: Expecting ';' but found ')'
-src/kernel/kernel.c(35): Error! E1063: Missing operand
-src/kernel/kernel.c(35): Warning! W111: Meaningless use of an expression
-src/kernel/kernel.c(35): Error! E1147: Too many errors: compilation aborted
+src/kernel/kernel.c(55): Warning! W131: No prototype found for function 'find_command'
+src/kernel/kernel.c(84): Warning! W131: No prototype found for function 'execute_command'
