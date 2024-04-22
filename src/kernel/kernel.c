@@ -141,3 +141,7 @@ void _cdecl clear_screen_(){
 void _cdecl putc_(char c){
 	putc(c);
 }
+
+void _cdecl interrupt_initialization(){
+	
+}

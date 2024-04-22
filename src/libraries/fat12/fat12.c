@@ -20,17 +20,17 @@ void display_directory(char current_directory[])
 	load_directory();
 	if(current_directory[0] == 0)
 	{
-		for(i = 0; i < 1; i++){
+		for(i = 0; i < 5; i++){
 		
-			for(t = 0; t <= 32; t++){
-				if(!directorycopy != 0)
+			for(t = 0; t <= 11; t++){
+				if(*directorycopy != 0)
 				{
 					printf("%c", *directorycopy);	
 				}
 				directorycopy++;
 			}
 			
-			printf("%nMoving to next entry%n"); // debug messages remove later
+			printf("%n");
 			directory = directory + 32;
 			directorycopy = directory;
 		}
