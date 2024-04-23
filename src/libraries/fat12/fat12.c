@@ -15,12 +15,20 @@ void display_directory(char current_directory[])
 	uint16_t i;
 	uint16_t t;
 	__segment directoryseg = LOAD_SEGMENT_TABLE;
-	char __based(directoryseg)* directory;
+	char __based(directoryseg)* directory = 0;
 	char __based(directoryseg)* directorycopy;
 	load_directory();
+	directorycopy = directory;
+	
 	if(current_directory[0] == 0)
 	{
-		for(i = 0; i < 5; i++){
+		for(i = 0; i < 224; i++){
+			if(*directorycopy == 0)
+			{
+				directory = directory + 32;
+				directorycopy = directory;
+				continue;
+			}
 		
 			for(t = 0; t <= 11; t++){
 				if(*directorycopy != 0)
