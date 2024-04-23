@@ -44,7 +44,7 @@ void command_interperter(){
 			break;
 		}
 	}
-	printf("%s", current_directory);
+	printf("%s\>", current_directory);
 	while(1){
 		c[cmd_len] = read_key();
 		putc(c[cmd_len]);
