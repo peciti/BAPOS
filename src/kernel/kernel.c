@@ -142,6 +142,16 @@ void _cdecl putc_(char c){
 	putc(c);
 }
 
-void _cdecl interrupt_initialization(){
-	
+void _cdecl interrupt_initialize(){
+	__segment IVT_segment = 0x0;
+	uint16_t __base(IVT_segment)* interrupt_entry = 0xc0;
+
+	*interrupt_entry = 0x6000;
+	interrupt_entry++;
+	*interrupt_entry = 0x2;
+
+	interrupt_entry++;
+	*interrupt_entry = 0x6000;
+	interrupt_entry++;
+	*interrupt_entry = 0x4;
 }

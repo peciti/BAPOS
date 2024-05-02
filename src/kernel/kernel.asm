@@ -3,14 +3,15 @@
 section _ENTRY CLASS=CODE
 
 extern _cstart_
+extern _interrupt_initialize
 extern _clear_screen_
 extern _putc_
 
 global entry
 
 jmp entry ; 0x0
-jmp _clear_screen_ ; 0x2
-jmp _putc_ ; 0x4
+jmp system_call ; 0x2
+jmp screen_call ; 0x4
 
 entry:
 	cli
@@ -20,7 +21,7 @@ entry:
 	mov bp, sp
 	sti
 
-	call _clear_screen_
+	call _interrupt_initialize
 	call _cstart_
 
 	cli
@@ -28,3 +29,10 @@ entry:
 
 halt:
 	jmp halt
+
+system_call:
+	cmp ax, 0 ; ..... just a bunch of cmp i'll figure out what they'll be for later
+	
+
+screen_call:
+	call _putc_ ; find a way to pass argument to the method
