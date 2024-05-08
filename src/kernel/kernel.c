@@ -114,7 +114,18 @@ void execute_command(char cmd[], char arg[])
 		clear_screen();
 	}
 	else if(strcmp(cmd, "run")){
-		run_program(arg, 0x1000, 0x0);
+		bool run = true;
+		if(strlen(arg) > 12)
+		{
+			printf("Invalid filename!%n");
+			run = false;
+		}
+		
+		if(run)
+		{
+			run_program(arg, 0x1000, 0x0);	
+		}
+		
 	}
 
 	else if(strcmp(cmd, "help")){

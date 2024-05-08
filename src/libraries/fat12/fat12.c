@@ -63,6 +63,7 @@ uint16_t fat12_find(char filename[])
 	{
 		for(t = 0; t <= 11; t++)
 		{
+			printf("%c and %c", *directorycopy, filename[t]);
 			if(t == 11)
 			{
 				directory = directory + 26;

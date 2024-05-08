@@ -31,8 +31,10 @@ halt:
 	jmp halt
 
 system_call:
-	cmp ax, 0 ; ..... just a bunch of cmp i'll figure out what they'll be for later
-	
+	cmp ax, 0 ; clear screen system call
+	je _clear_screen_
+	ret	
 
 screen_call:
 	call _putc_ ; find a way to pass argument to the method
+	ret
