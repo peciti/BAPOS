@@ -161,21 +161,19 @@ void convert_filename(char* filename)
 	}
 
 	printf("%s%n", formatarraycopy);
-	
+
 	for(i = 0; i < strlen(format); i++)
 	{
 		*filenamecopy = formatarraycopy[i];
 		filenamecopy++;
 	}
-	
-	printf("%s%n", filename);
 }
 
 void run_program(char* filename, uint16_t load_segment, uint16_t load_offset)
 {
 	bool success;
 	convert_filename(filename);
-	// success = fat12_read(fat12_find(filename), load_segment, load_offset);
+	success = fat12_read(fat12_find(filename), load_segment, load_offset);
 	if(success)
 	{
 		// doesn't work yet (doesn't jump to the program or maybe program isn't loaded?)
