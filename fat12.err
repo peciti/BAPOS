@@ -1,1 +1,7 @@
 src/libraries/fat12/fat12.c(101): Warning! W202: Symbol 'FATptr' has been defined, but not referenced
+src/libraries/fat12/fat12.c(138): Warning! W131: No prototype found for function 'str_lower_to_upper'
+src/libraries/fat12/fat12.c(180): Warning! W200: 'success' has been referenced but never assigned a value
+src/libraries/fat12/fat12.c(138): Warning! W308: The function 'str_lower_to_upper' without prototyped parameters called
+src/libraries/fat12/fat12.c(138): Note! I2002: 'str_lower_to_upper' defined in: src/libraries/fat12/fat12.c(138)
+src/libraries/fat12/fat12.c(139): Warning! W308: The function 'str_lower_to_upper' without prototyped parameters called
+src/libraries/fat12/fat12.c(139): Note! I2002: 'str_lower_to_upper' defined in: src/libraries/fat12/fat12.c(138)

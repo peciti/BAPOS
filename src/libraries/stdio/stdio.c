@@ -16,6 +16,21 @@ void putc(char c){
 	x86_Write_Character(c,0);
 }
 
+void str_lower_to_upper(char* str)
+{
+	char* strcopy;
+	strcopy = str;
+
+	while(strcopy)
+	{
+		if(*strcopy >= 0x61 && *strcopy <= 0x7a)
+		{
+			*strcopy = *strcopy - 0x20;
+		}
+		strcopy++;
+	}
+}
+
 void puts(const char* s){
 	while(*s)
 	{

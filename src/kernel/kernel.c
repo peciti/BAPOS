@@ -113,6 +113,7 @@ void execute_command(char cmd[], char arg[])
 	else if(strcmp(cmd, "clear")){
 		clear_screen();
 	}
+	
 	else if(strcmp(cmd, "run")){
 		bool run = true;
 		if(strlen(arg) > 12)
@@ -144,6 +145,8 @@ void execute_command(char cmd[], char arg[])
 		c[i] = 0;
 	}
 }
+
+
 
 void _cdecl clear_screen_(){
 	clear_screen();

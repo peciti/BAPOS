@@ -63,7 +63,7 @@ uint16_t fat12_find(char filename[])
 	{
 		for(t = 0; t <= 11; t++)
 		{
-			printf("%c and %c", *directorycopy, filename[t]);
+			// printf("%c and %c", *directorycopy, filename[t]);
 			if(t == 11)
 			{
 				directory = directory + 26;
@@ -124,10 +124,58 @@ bool fat12_read(uint16_t sector, uint16_t load_segment, uint16_t load_offset)
 	return 0;
 }
 
+void convert_filename(char* filename)
+{
+	uint16_t i;
+	uint16_t filename_len;
+	uint16_t buffer_len;
+	char* filenamecopy;
+	char* format;
+	char* formatcopy;
+	char formatarraycopy[3];
+	format = strspl(filename, ".");
+	
+	str_lower_to_upper(filename);
+	str_lower_to_upper(format);
+
+	filenamecopy = filename;
+	formatcopy = format;
+
+	for(i = 0; i < 3; i++)
+	{
+		formatarraycopy[i] = *formatcopy;
+		formatcopy++;
+	}
+
+	filename_len = strlen(filename);
+	for(i = 0; i < filename_len; i++)
+	{
+		filenamecopy++;
+	}
+
+	buffer_len = 8 - filename_len;
+	for(i = 0; i < buffer_len; i++)
+	{
+		*filenamecopy = 0x20;
+		filenamecopy++;
+	}
+
+	printf("%s%n", formatarraycopy);
+	
+	for(i = 0; i < strlen(format); i++)
+	{
+		*filenamecopy = formatarraycopy[i];
+		filenamecopy++;
+	}
+	
+	printf("%s%n", filename);
+}
+
 void run_program(char* filename, uint16_t load_segment, uint16_t load_offset)
 {
 	bool success;
-	success = fat12_read(fat12_find(filename), load_segment, load_offset);
+	convert_filename(filename);
+	// success = fat12_read(fat12_find(filename), load_segment, load_offset);
 	if(success)
 	{
 		// doesn't work yet (doesn't jump to the program or maybe program isn't loaded?)
