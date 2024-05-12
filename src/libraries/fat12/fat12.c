@@ -10,6 +10,13 @@ void load_directory()
 	x86_Disk_Read(directory_sector, REPOSITORY_SIZE, LOAD_OFFSET_TABLE, LOAD_SEGMENT_TABLE);
 }
 
+void load_FAT()
+{
+	uint16_t FAT_sector;
+	FAT_sector = RESERVED_SECTORS;
+	x86_Disk_Read(FAT_sector, SECTORS_PER_FAT, LOAD_OFFSET_TABLE, LOAD_SEGMENT_TABLE);
+}
+
 void display_directory(char current_directory[])
 {
 	uint16_t i;
@@ -37,7 +44,7 @@ void display_directory(char current_directory[])
 				}
 				directorycopy++;
 			}
-			
+
 			printf("%n");
 			directory = directory + 32;
 			directorycopy = directory;
@@ -100,7 +107,8 @@ bool fat12_read(uint16_t sector, uint16_t load_segment, uint16_t load_offset)
 		__segment FAT_segment = LOAD_SEGMENT_TABLE;
 		uint16_t __based(FAT_segment)* FATptr;
 		FAT_sector = RESERVED_SECTORS;
-		x86_Disk_Read(FAT_sector, SECTORS_PER_FAT, LOAD_OFFSET_TABLE, LOAD_SEGMENT_TABLE);
+		load_FAT();
+		
 		printf("Loading File%n");
 		while(1)
 		{
@@ -169,6 +177,54 @@ void convert_filename(char* filename)
 	}
 }
 
+void create_file(char filename[])
+{
+	uint16_t i;
+	uint16_t t;
+	uint16_t r;
+	__segment loadseg = LOAD_SEGMENT_TABLE;
+	char __based(loadseg)* directory = 0;
+	char __based(loadseg)* directorycopy;
+	uint16_t __based(loadseg)* FAT_entry = 0x3;
+	load_directory();
+	directorycopy = directory;
+
+		for(i = 0; i < 224; i++)
+		{
+			if(*directorycopy == 0)
+			{
+				for(t = 0; t < 11; t++){
+					*directorycopy = filename[t];
+					directorycopy++;
+				}
+
+				directorycopy = directorycopy + 15;
+
+				load_FAT();
+				while(*FAT_entry != 0x0)
+				{
+					r = *FAT_entry % 2;
+					if(r != 0)
+					{
+						*FAT_entry >> 4;
+					}
+					printf("%x%n", *FAT_entry);
+					FAT_entry++;
+				}
+
+				if(*FAT_entry == 0xff8)
+				{
+					printf("Not enough space on disk");
+				}
+				
+				break;
+			}
+			
+			directory = directory + 32;
+			directorycopy = directory;
+		}	
+}
+
 void run_program(char* filename, uint16_t load_segment, uint16_t load_offset)
 {
 	bool success;
@@ -177,12 +233,7 @@ void run_program(char* filename, uint16_t load_segment, uint16_t load_offset)
 	if(success)
 	{
 		// doesn't work yet (doesn't jump to the program or maybe program isn't loaded?)
-		__asm{
-			push ax
-			push bx
-			push cx
-			push dx
-	
+		__asm{	
 			mov ax, load_segment
 	
 			mov ds, ax
@@ -202,11 +253,7 @@ void run_program(char* filename, uint16_t load_segment, uint16_t load_offset)
 			mov ax, KERNSEG
 			mov ss, ax
 			sti
-	
-			pop dx
-			pop cx
-			pop bx
-			pop ax
+
 			}
 	}
 }

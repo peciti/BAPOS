@@ -136,6 +136,10 @@ void execute_command(char cmd[], char arg[])
 		}
 	}
 
+	else if(strcmp(cmd, "mk")){
+		create_file(arg);
+	}
+
 	else{
 		printf("'%s' is not a valid command%n type 'help' to see available commands%n", cmd);
 	}

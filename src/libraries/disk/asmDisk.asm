@@ -24,6 +24,31 @@ _x86_Disk_Read:
 	pop bp
 	ret
 
+global _x86_Disk_Write
+_x86_Disk_Write:
+	push bp
+	mov bp, sp
+
+	mov ax, [bp + 4]
+	mov cx, [bp + 6]
+	mov bx, [bp + 8]
+
+	mov dx, [bp + 10]
+	push es
+	mov es, dx
+	xor dx, dx
+	push cx
+	call lba_to_chs
+	pop ax
+
+	mov ah, 0x01
+	int 0x13
+
+	pop es
+	mov sp, bp
+	pop bp
+	ret
+
 global _x86_Disk_Reset
 _x86_Disk_Reset:
 	push bp
