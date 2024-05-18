@@ -1,7 +1,6 @@
 #include "fat12.h"
 #include "../disk/asmDisk.h"
 #include "../stdio/stdio.h"
-#include "../asm_functions/asm_functions.h"
 
 void load_directory()
 {
@@ -232,13 +231,14 @@ void create_file(char filename[])
 
 void write_file(char filename[], char* data)
 {
-	/*__segment write_segment = 0x3000;
+	__segment write_segment = 0x3000;
 	char __based(write_segment)* write_ptr = 0x0;
 	uint16_t first_sector;
 	
-	load_directory();
 	convert_filename(filename);
 	printf("%s%n", filename);
+	printf("%s%n", data);
+	
 	first_sector = fat12_find(filename);
 	fat12_read(first_sector, write_segment, 0x0);
 	while(*data)
@@ -248,7 +248,7 @@ void write_file(char filename[], char* data)
 		data++;
 	}
 	
-	x86_Disk_Write(first_sector, 1, 0x0, write_segment);*/
+	x86_Disk_Write(first_sector, 1, 0x0, write_segment);
 }
 
 void dump_file(char filename[])
@@ -256,7 +256,6 @@ void dump_file(char filename[])
 	__segment dump_segment = 0x3000;
 	char __based(dump_segment)* dump_ptr = 0x0;
 	uint16_t first_sector;
-	printf("%s%n", filename);
 	
 	convert_filename(filename);
 	printf("%s%n", filename);
