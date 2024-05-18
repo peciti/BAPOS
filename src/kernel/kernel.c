@@ -132,12 +132,21 @@ void execute_command(char cmd[], char arg[])
 	else if(strcmp(cmd, "help")){
 
 		if(*arg == 13){
-			printf("echo%nclear%nshutdown%ncd%nls%nrun%n");
+			printf("echo%nclear%nshutdown%ncd%nls%nrun%nmk%ndump%nwrite%n");
 		}
 	}
 
 	else if(strcmp(cmd, "mk")){
 		create_file(arg);
+	}
+
+	else if(strcmp(cmd, "dump")){
+		dump_file(arg);
+	}
+
+	else if(strcmp(cmd, "write")){
+		char* data = strspl(arg, " ");
+		write_file(arg, data);
 	}
 
 	else{
@@ -149,7 +158,6 @@ void execute_command(char cmd[], char arg[])
 		c[i] = 0;
 	}
 }
-
 
 
 void _cdecl clear_screen_(){

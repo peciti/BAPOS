@@ -1,10 +1,15 @@
 src/libraries/fat12/fat12.c(108): Warning! W202: Symbol 'FATptr' has been defined, but not referenced
-src/libraries/fat12/fat12.c(146): Warning! W131: No prototype found for function 'str_lower_to_upper'
-src/libraries/fat12/fat12.c(188): Warning! W101: Non-portable pointer conversion
-src/libraries/fat12/fat12.c(188): Note! I2003: source conversion type is 'int'
-src/libraries/fat12/fat12.c(188): Note! I2004: target conversion type is 'unsigned short __based(loadseg) *'
-src/libraries/fat12/fat12.c(209): Warning! W111: Meaningless use of an expression
+src/libraries/fat12/fat12.c(145): Warning! W131: No prototype found for function 'str_lower_to_upper'
+src/libraries/fat12/fat12.c(185): Warning! W101: Non-portable pointer conversion
+src/libraries/fat12/fat12.c(185): Note! I2003: source conversion type is 'int'
+src/libraries/fat12/fat12.c(185): Note! I2004: target conversion type is 'unsigned short __based(loadseg) *'
+src/libraries/fat12/fat12.c(205): Warning! W111: Meaningless use of an expression
+src/libraries/fat12/fat12.c(209): Warning! W102: Type mismatch (warning)
+src/libraries/fat12/fat12.c(209): Note! I2003: source conversion type is 'unsigned short __based(loadseg) *'
+src/libraries/fat12/fat12.c(209): Note! I2004: target conversion type is 'unsigned short'
+src/libraries/fat12/fat12.c(233): Warning! W303: Parameter 'filename' has been defined, but not referenced
+src/libraries/fat12/fat12.c(233): Warning! W303: Parameter 'data' has been defined, but not referenced
+src/libraries/fat12/fat12.c(145): Warning! W308: The function 'str_lower_to_upper' without prototyped parameters called
+src/libraries/fat12/fat12.c(145): Note! I2002: 'str_lower_to_upper' defined in: src/libraries/fat12/fat12.c(145)
 src/libraries/fat12/fat12.c(146): Warning! W308: The function 'str_lower_to_upper' without prototyped parameters called
-src/libraries/fat12/fat12.c(146): Note! I2002: 'str_lower_to_upper' defined in: src/libraries/fat12/fat12.c(146)
-src/libraries/fat12/fat12.c(147): Warning! W308: The function 'str_lower_to_upper' without prototyped parameters called
-src/libraries/fat12/fat12.c(147): Note! I2002: 'str_lower_to_upper' defined in: src/libraries/fat12/fat12.c(146)
+src/libraries/fat12/fat12.c(146): Note! I2002: 'str_lower_to_upper' defined in: src/libraries/fat12/fat12.c(145)

@@ -37,12 +37,7 @@ _x86_Disk_Write:
 	push es
 	mov es, dx
 	xor dx, dx
-	push cx
-	call lba_to_chs
-	pop ax
-
-	mov ah, 0x01
-	int 0x13
+	call disk_write
 
 	pop es
 	mov sp, bp
@@ -83,6 +78,16 @@ disk_read:
 
 	mov ah, 0x02
 	int 0x13
+	ret
+
+disk_write:
+	push cx
+	call lba_to_chs
+	pop ax
+	
+	mov ah, 0x03
+	int 0x13
+	ret
 
 lba_to_chs:
 	push ax

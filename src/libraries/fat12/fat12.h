@@ -9,6 +9,8 @@ bool fat12_read(uint16_t cluster, uint16_t load_segment, uint16_t load_offset); 
 void run_program(char filename[], uint16_t load_segment, uint16_t load_offset); // loads program into memory and jumps to it
 void convert_filename(char* filename);
 void create_file(char* filename);
+void dump_file(char filename[]);
+void write_file(char filename[], char* data);
 
 #define LOAD_SEGMENT_TABLE 0x4000 // where root directory and FAT will be loaded
 #define LOAD_OFFSET_TABLE 0x0

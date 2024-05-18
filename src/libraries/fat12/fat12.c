@@ -110,8 +110,8 @@ bool fat12_read(uint16_t sector, uint16_t load_segment, uint16_t load_offset)
 		load_FAT();
 		
 		printf("Loading File%n");
-		while(1)
-		{
+		//while(1)
+		//{
 			sector = sector + 31;
 			printf("sector: %x %n", sector);
 			printf("Loading at: %x:%x %n", load_segment, load_offset);
@@ -123,10 +123,9 @@ bool fat12_read(uint16_t sector, uint16_t load_segment, uint16_t load_offset)
 			}*/
 			x86_Disk_Read(sector, 1, load_offset, load_segment);
 			// load_offset = load_offset + 512; // bytes per sector
-			break;
-		}
-		printf("File Loaded press any key to continue...%n");
-		read_key();
+			// break;
+		//}
+		
 		return 1;
 	}
 	return 0;
@@ -168,8 +167,6 @@ void convert_filename(char* filename)
 		filenamecopy++;
 	}
 
-	printf("%s%n", formatarraycopy);
-
 	for(i = 0; i < strlen(format); i++)
 	{
 		*filenamecopy = formatarraycopy[i];
@@ -188,7 +185,7 @@ void create_file(char filename[])
 	uint16_t __based(loadseg)* FAT_entry = 0x3;
 	load_directory();
 	directorycopy = directory;
-
+	convert_filename(filename);
 		for(i = 0; i < 224; i++)
 		{
 			if(*directorycopy == 0)
@@ -197,8 +194,7 @@ void create_file(char filename[])
 					*directorycopy = filename[t];
 					directorycopy++;
 				}
-
-				directorycopy = directorycopy + 15;
+				directorycopy = directorycopy + 26;
 
 				load_FAT();
 				while(*FAT_entry != 0x0)
@@ -208,21 +204,69 @@ void create_file(char filename[])
 					{
 						*FAT_entry >> 4;
 					}
-					printf("%x%n", *FAT_entry);
 					FAT_entry++;
 				}
-
+				r = FAT_entry;
 				if(*FAT_entry == 0xff8)
 				{
 					printf("Not enough space on disk");
 				}
 				
+				load_directory();
+				*directorycopy = r;
+				directorycopy = directory;
+				for(t = 0; t < 11; t++){
+					*directorycopy = filename[t];
+					directorycopy++;
+				}
+				
+				x86_Disk_Write(SECTORS_PER_FAT * FAT_COUNT + RESERVED_SECTORS, REPOSITORY_SIZE, LOAD_OFFSET_TABLE, LOAD_SEGMENT_TABLE);
+				printf("File created%n");
 				break;
 			}
 			
 			directory = directory + 32;
 			directorycopy = directory;
 		}	
+}
+
+void write_file(char filename[], char* data)
+{
+	/*__segment write_segment = 0x3000;
+	char __based(write_segment)* write_ptr = 0x0;
+	uint16_t first_sector;
+	
+	load_directory();
+	convert_filename(filename);
+	printf("%s%n", filename);
+	first_sector = fat12_find(filename);
+	fat12_read(first_sector, write_segment, 0x0);
+	while(*data)
+	{
+		*write_ptr = *data;
+		write_ptr++;
+		data++;
+	}
+	
+	x86_Disk_Write(first_sector, 1, 0x0, write_segment);*/
+}
+
+void dump_file(char filename[])
+{
+	__segment dump_segment = 0x3000;
+	char __based(dump_segment)* dump_ptr = 0x0;
+	uint16_t first_sector;
+	printf("%s%n", filename);
+	
+	convert_filename(filename);
+	printf("%s%n", filename);
+	first_sector = fat12_find(filename);
+	fat12_read(first_sector, dump_segment, 0x0);
+	while(*dump_ptr)
+	{
+		printf("%c", *dump_ptr);
+		dump_ptr++;
+	}
 }
 
 void run_program(char* filename, uint16_t load_segment, uint16_t load_offset)
