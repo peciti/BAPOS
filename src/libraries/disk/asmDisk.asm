@@ -5,7 +5,6 @@ bdb_heads: db 2
 section _TEXT class=CODE
 global _x86_Disk_Read
 _x86_Disk_Read:
-	sti
 	push bp
 	mov bp, sp
 

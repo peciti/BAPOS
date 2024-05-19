@@ -132,8 +132,11 @@ void execute_command(char cmd[], char arg[])
 	else if(strcmp(cmd, "help")){
 
 		if(*arg == 13){
-			printf("echo%nclear%nshutdown%ncd%nls%nrun%nmk%ndump%nwrite%n");
+			printf("echo%nclear%nshutdown%ncd%nls%nrun%nmk%ndump%nwrite%ndel%n");
 		}
+	}
+	else if(strcmp(cmd, "del")){
+		delete_file(arg);
 	}
 
 	else if(strcmp(cmd, "mk")){

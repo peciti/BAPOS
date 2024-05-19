@@ -1,6 +1,8 @@
 #pragma once
 #include "../stdint.h"
 
+void disk_read(uint16_t sector, uint16_t size, uint16_t offset, uint16_t segment);
+void disk_write(uint16_t sector, uint16_t size, uint16_t offset, uint16_t segment);
 void display_directory(char current_directory[]); // prints out to the screen contents of given directory
 void load_directory(char current_directory[]); // loads root directory into memory
 void load_FAT();
@@ -11,6 +13,7 @@ void convert_filename(char* filename);
 void create_file(char* filename);
 void dump_file(char filename[]);
 void write_file(char filename[], char* data);
+void delete_file(char filename[]);
 
 #define LOAD_SEGMENT_TABLE 0x4000 // where root directory and FAT will be loaded
 #define LOAD_OFFSET_TABLE 0x0

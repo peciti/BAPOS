@@ -5,7 +5,7 @@ src/kernel/kernel.c(16): Note! I2002: 'x86_Disk_Reset' defined in: src/kernel/..
 src/kernel/kernel.c(24): Warning! W131: No prototype found for function 'command_interperter'
 src/kernel/kernel.c(55): Warning! W131: No prototype found for function 'find_command'
 src/kernel/kernel.c(84): Warning! W131: No prototype found for function 'execute_command'
-src/kernel/kernel.c(173): Warning! W101: Non-portable pointer conversion
-src/kernel/kernel.c(173): Note! I2003: source conversion type is 'int'
-src/kernel/kernel.c(173): Note! I2004: target conversion type is 'unsigned short *'
-src/kernel/kernel.c(172): Warning! W202: Symbol 'IVT_segment' has been defined, but not referenced
+src/kernel/kernel.c(176): Warning! W101: Non-portable pointer conversion
+src/kernel/kernel.c(176): Note! I2003: source conversion type is 'int'
+src/kernel/kernel.c(176): Note! I2004: target conversion type is 'unsigned short *'
+src/kernel/kernel.c(175): Warning! W202: Symbol 'IVT_segment' has been defined, but not referenced

@@ -2,18 +2,29 @@
 #include "../disk/asmDisk.h"
 #include "../stdio/stdio.h"
 
+__segment segment_table = LOAD_SEGMENT_TABLE;
+char __based(segment_table)* table_ptr;
+
+void disk_read(uint16_t sector, uint16_t size, uint16_t offset, uint16_t segment){
+	x86_Disk_Read(sector, size, offset, segment);
+}
+
+void disk_write(uint16_t sector, uint16_t size, uint16_t offset, uint16_t segment){
+	x86_Disk_Read(sector, size, offset, segment);
+}
+
 void load_directory()
 {
 	uint16_t directory_sector;
 	directory_sector = SECTORS_PER_FAT * FAT_COUNT + RESERVED_SECTORS;
-	x86_Disk_Read(directory_sector, REPOSITORY_SIZE, LOAD_OFFSET_TABLE, LOAD_SEGMENT_TABLE);
+	disk_read(directory_sector, REPOSITORY_SIZE, LOAD_OFFSET_TABLE, LOAD_SEGMENT_TABLE);
 }
 
 void load_FAT()
 {
 	uint16_t FAT_sector;
 	FAT_sector = RESERVED_SECTORS;
-	x86_Disk_Read(FAT_sector, SECTORS_PER_FAT, LOAD_OFFSET_TABLE, LOAD_SEGMENT_TABLE);
+	disk_read(FAT_sector, SECTORS_PER_FAT, LOAD_OFFSET_TABLE, LOAD_SEGMENT_TABLE);
 }
 
 void display_directory(char current_directory[])
@@ -106,21 +117,21 @@ bool fat12_read(uint16_t sector, uint16_t load_segment, uint16_t load_offset)
 		__segment FAT_segment = LOAD_SEGMENT_TABLE;
 		uint16_t __based(FAT_segment)* FATptr;
 		FAT_sector = RESERVED_SECTORS;
-		load_FAT();
+		//load_FAT();
 		
-		printf("Loading File%n");
 		//while(1)
 		//{
 			sector = sector + 31;
-			printf("sector: %x %n", sector);
-			printf("Loading at: %x:%x %n", load_segment, load_offset);
-			read_key();
+			printf("sector: %i%n", sector);
+			printf("Loading at: %x:%x%n", load_segment, load_offset);
 
 			/*if(sector == 0x0ff8)
 			{
 				break;
 			}*/
-			x86_Disk_Read(sector, 1, load_offset, load_segment);
+			
+			// x86_Disk_Read(sector, 1, load_offset, load_segment);
+			disk_read(sector, 1, load_offset, load_segment);
 			// load_offset = load_offset + 512; // bytes per sector
 			// break;
 		//}
@@ -231,8 +242,8 @@ void create_file(char filename[])
 
 void write_file(char filename[], char* data)
 {
-	__segment write_segment = 0x3000;
-	char __based(write_segment)* write_ptr = 0x0;
+	__segment writeseg = segment_table;
+	char __based(writeseg)* write_ptr = table_ptr;
 	uint16_t first_sector;
 	
 	convert_filename(filename);
@@ -240,7 +251,7 @@ void write_file(char filename[], char* data)
 	printf("%s%n", data);
 	
 	first_sector = fat12_find(filename);
-	fat12_read(first_sector, write_segment, 0x0);
+	fat12_read(first_sector, writeseg, 0x0);
 	while(*data)
 	{
 		*write_ptr = *data;
@@ -248,20 +259,66 @@ void write_file(char filename[], char* data)
 		data++;
 	}
 	
-	x86_Disk_Write(first_sector, 1, 0x0, write_segment);
+	x86_Disk_Write(first_sector + 31, 1, 0x0, writeseg);
+}
+
+void delete_file(char filename[])
+{
+	uint16_t first_sector;
+	uint8_t i;
+	__segment deleteseg = segment_table;
+	char __based(deleteseg)* delete_ptr = table_ptr;
+	
+	convert_filename(filename);
+	printf("%s%n", filename);
+	load_directory();
+	printf("%s", delete_ptr);
+	read_key();
+	
+	while(!strcmp(delete_ptr, filename))
+	{
+		printf("%s", delete_ptr);
+		delete_ptr = delete_ptr + 32;
+	}
+
+	if(strcmp(delete_ptr, filename))
+	{
+
+		printf("%s and %s", delete_ptr, filename);
+		for(i = 0; i < 11; i++)
+		{
+			*delete_ptr = 0;
+			delete_ptr++;
+		}
+		
+		x86_Disk_Write(SECTORS_PER_FAT * FAT_COUNT + RESERVED_SECTORS, REPOSITORY_SIZE, LOAD_OFFSET_TABLE, LOAD_SEGMENT_TABLE);
+		printf("File deleted");
+	
+	}
 }
 
 void dump_file(char filename[])
 {
-	__segment dump_segment = 0x3000;
-	char __based(dump_segment)* dump_ptr = 0x0;
+	uint16_t i;
 	uint16_t first_sector;
+	__segment dumpseg = segment_table;
+	char __based(dumpseg)* dump_ptr = table_ptr;
 	
 	convert_filename(filename);
 	printf("%s%n", filename);
 	first_sector = fat12_find(filename);
-	fat12_read(first_sector, dump_segment, 0x0);
-	while(*dump_ptr)
+	
+	fat12_read(first_sector, dumpseg, table_ptr);
+	printf("%i%n", first_sector);
+	// x86_Disk_Read(first_sector, 1, LOAD_OFFSET_TABLE, LOAD_SEGMENT_TABLE);
+	
+	// fat12_read(first_sector, dumpseg, 0x0);
+	/*while(*dump_ptr)
+	{
+		printf("%c", *dump_ptr);
+		dump_ptr++;
+	}*/
+	for(i = 0; i < 512; i++)
 	{
 		printf("%c", *dump_ptr);
 		dump_ptr++;
