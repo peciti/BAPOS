@@ -130,8 +130,8 @@ bool fat12_read(uint16_t sector, uint16_t load_segment, uint16_t load_offset)
 				break;
 			}*/
 			
-			// x86_Disk_Read(sector, 1, load_offset, load_segment);
-			disk_read(sector, 1, load_offset, load_segment);
+			x86_Disk_Read(sector, 1, load_offset, load_segment);
+			//disk_read(sector, 1, load_offset, load_segment);
 			// load_offset = load_offset + 512; // bytes per sector
 			// break;
 		//}
@@ -266,21 +266,18 @@ void delete_file(char filename[])
 {
 	uint16_t first_sector;
 	uint8_t i;
+	uint8_t t;
 	__segment deleteseg = segment_table;
 	char __based(deleteseg)* delete_ptr = table_ptr;
-	
+	char __based(deleteseg)* delete_ptr_cpy = delete_ptr;
 	convert_filename(filename);
 	printf("%s%n", filename);
 	load_directory();
 	printf("%s", delete_ptr);
 	read_key();
 	
-	while(!strcmp(delete_ptr, filename))
+	for(t = 0; t < 224; t++)
 	{
-		printf("%s", delete_ptr);
-		delete_ptr = delete_ptr + 32;
-	}
-
 	if(strcmp(delete_ptr, filename))
 	{
 
@@ -293,7 +290,9 @@ void delete_file(char filename[])
 		
 		x86_Disk_Write(SECTORS_PER_FAT * FAT_COUNT + RESERVED_SECTORS, REPOSITORY_SIZE, LOAD_OFFSET_TABLE, LOAD_SEGMENT_TABLE);
 		printf("File deleted");
-	
+	}
+	delete_ptr_cpy = delete_ptr_cpy + 32;
+	delete_ptr = delete_ptr_cpy;
 	}
 }
 

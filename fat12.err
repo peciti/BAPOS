@@ -8,10 +8,10 @@ src/libraries/fat12/fat12.c(219): Warning! W102: Type mismatch (warning)
 src/libraries/fat12/fat12.c(219): Note! I2003: source conversion type is 'unsigned short __based(loadseg) *'
 src/libraries/fat12/fat12.c(219): Note! I2004: target conversion type is 'unsigned short'
 src/libraries/fat12/fat12.c(267): Warning! W202: Symbol 'first_sector' has been defined, but not referenced
-src/libraries/fat12/fat12.c(311): Warning! W102: Parameter 3: Type mismatch (warning)
-src/libraries/fat12/fat12.c(311): Note! I2003: source conversion type is 'char __based(segment_table) *'
-src/libraries/fat12/fat12.c(311): Note! I2004: target conversion type is 'unsigned short'
-src/libraries/fat12/fat12.c(311): Note! I2002: 'fat12_read' defined in: src/libraries/fat12/fat12.c(106)
+src/libraries/fat12/fat12.c(310): Warning! W102: Parameter 3: Type mismatch (warning)
+src/libraries/fat12/fat12.c(310): Note! I2003: source conversion type is 'char __based(segment_table) *'
+src/libraries/fat12/fat12.c(310): Note! I2004: target conversion type is 'unsigned short'
+src/libraries/fat12/fat12.c(310): Note! I2002: 'fat12_read' defined in: src/libraries/fat12/fat12.c(106)
 src/libraries/fat12/fat12.c(155): Warning! W308: The function 'str_lower_to_upper' without prototyped parameters called
 src/libraries/fat12/fat12.c(155): Note! I2002: 'str_lower_to_upper' defined in: src/libraries/fat12/fat12.c(155)
 src/libraries/fat12/fat12.c(156): Warning! W308: The function 'str_lower_to_upper' without prototyped parameters called
