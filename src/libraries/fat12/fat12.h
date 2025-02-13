@@ -1,4 +1,5 @@
 #pragma once
+#include "../stdint.h"
 
 void disk_read(uint16_t sector, uint16_t size, uint16_t offset, uint16_t segment);
 void disk_write(uint16_t sector, uint16_t size, uint16_t offset, uint16_t segment);
