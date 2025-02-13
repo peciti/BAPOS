@@ -355,4 +355,8 @@ void run_program(char* filename, uint16_t load_segment, uint16_t load_offset)
 
 			}
 	}
+	else
+	{
+		printf("Failed to load program %n");
+	}
 }
