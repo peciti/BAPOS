@@ -1,6 +1,8 @@
 #include "stdio.h"
 #include "print.h"
 #include "input.h"
+__segment video_segment = VIDEO_MEM_SEGMENT;
+char __based(video_segment)* videommr = 0;
 
 char read_key(){
 	char c;
@@ -13,7 +15,7 @@ void clear_screen(){
 }
 
 void putc(char c){
-	x86_Write_Character(c,0);
+	x86_Write_Character(c, 15);
 }
 
 void str_lower_to_upper(char* str)

@@ -23,3 +23,5 @@ char read_key();
 #define PRINTF_LENGTH_SHORT 2
 #define PRINTF_LENGTH_LONG 3
 #define PRINTF_LENGTH_LONG_LONG 4
+
+#define VIDEO_MEM_SEGMENT 0xb800
